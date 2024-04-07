@@ -1,0 +1,220 @@
+{
+    "data" : [
+        {
+            "title" : "ست تاپ و شلوارک نایک",
+            "sex" : "none",
+            "category" : "تیشرت و پیراهن",
+            "price" : "240",
+            "img" : ["/dress/nike-set-up.jpg" , "/dress/nike-set-down.jpg"],
+            "color" : ["beige", "black" ,  "blue" , "red" , "#f45e56"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "1"
+        },
+        {
+            "title" : "تاپ ورزشی کلاه دار",
+            "sex" : "male",
+            "category" : "ورزشی و اسپورت",
+            "price" : "80",
+            "img" : ["/dress/nba-front.jpg" , "/dress/nba-back.jpg"],
+            "color" : ["beige", "white" ,  "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "2"
+        },
+        {
+            "title" : "تیشرت استین کوتاه کلاه دار",
+            "sex" : "male",
+            "category" : "تیشرت و پیراهن",
+            "price" : "250",
+            "img" : ["/dress/black-sleeveless-front.jpg" , "/dress/black-sleeveless-back.jpg"],
+            "color" : ["beige", "black" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "3"
+        },
+        {
+            "title" : "تیشرت استین بلند مردانه",
+            "sex" : "male",
+            "category" : "تیشرت و پیراهن",
+            "price" : "599",
+            "img" : ["/dress/nba-longsleeve.jpg"],
+            "color" : ["beige", "black" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "4"
+        },
+        {
+            "title" : "تیشرت مردانه برند رانژ",
+            "category" : "تیشرت و پیراهن",
+            "price" : "552",
+            "img" : ["/dress/t-shirt-gold.jpg"],
+            "sex" : "male",
+            "color" : ["beige", "black" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "20",
+            "id" : "5"
+        },
+        {
+            "title" : "ست تاپ و شلوارک قرمز",
+            "category" : "شلوار و شلوارک",
+            "price" : "259",
+            "img" : ["/dress/nike-sleeveless-red-front.webp" , "/dress/nike-sleeveless-red-back.jpg"],
+            "sex" : "male",
+            "color" : ["beige", "red" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "6"
+        },
+        {
+            "title" : "شلوارک مردانه نایک",
+            "category" : "شلوار و شلوارک",
+            "price" : "175",
+            "img" : ["/dress/short-pants-1.jpg"],
+            "sex" : "male",
+            "color" : ["beige",  "blue" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "7"
+        },
+        {
+            "title" : "رکابی ورزشی مردانه",
+            "category" : "ورزشی و اسپورت",
+            "price" : "137",
+            "img" : ["/dress/tup-with-arm.webp"],
+            "sex" : "male",
+            "color" : ["beige", "black" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "8"
+        }
+        ,
+        {
+            "title" : "تیشرت مردانه مشکی",
+            "category" : "تیشرت و پیراهن",
+            "price" : "68",
+            "img" : ["/dress/t-shirt-hp.jpg"],
+            "sex" : "male",
+            "color" : ["beige", "black" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "9"
+        }
+        ,
+        {
+            "title" : "تیشرت طرحدار مانستر",
+            "category" : "تیشرت و پیراهن",
+            "price" : "57",
+            "img" : ["/dress/t-shirt-monster.jpg"],
+            "sex" : "male",
+            "color" : ["beige", "black" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "10"
+        }
+        ,
+
+
+        {
+            "title" : "ست ورزشی مردانه",
+            "category" : "ورزشی و اسپورت",
+            "price" : "360",
+            "img" : ["/dress/sport-set-1.jpg" , "/dress/sport-set-2.jpg" ],
+            "sex" : "male",
+            "color" : ["beige", "black" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "11"
+        }
+        ,
+        {
+            "title" : "ست گرمکن مردانه",
+            "category" : "ورزشی و اسپورت",
+            "price" : "1320",
+            "img" : ["/dress/sport-warm-up-1.jpg", "/dress/sport-warm-up-2.jpg"],
+            "sex" : "male",
+            "color" : ["beige", "black" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "12"
+        }
+        ,
+        {
+            "title" : "تیشرت طرح run",
+            "category" : "تیشرت و پیراهن",
+            "price" : "199",
+            "img" : ["/dress/t-shirt-run.jpg"],
+            "sex" : "male",
+            "color" : ["beige",  "blue" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "13"
+        }
+        ,
+        {
+            "title" : "هودی سفید شیک",
+            "category" : " هودی و سوییشرت",
+            "price" : "194",
+            "img" : ["/dress/white-hoodie.jpg"],
+            "sex" : "none",
+            "color" : ["beige", "white" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "14"
+        }
+        ,
+        {
+            "title" : "تیشرت سفید استین کوتاه",
+            "category" : "تیشرت و پیراهن",
+            "price" : "245",
+            "img" : ["/dress/good-vibe.jpg"],
+            "sex" : "none",
+            "color" : ["beige", "white" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "15"
+        }
+        ,
+        {
+            "title" : "تیشرت استین کوتاه ساده کرمی ",
+            "category" : "تیشرت و پیراهن",
+            "price" : "245",
+            "img" : ["/dress/nodecolor-shirt.jpg"],
+            "sex" : "none",
+            "color" : ["beige", "beige" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "16"
+        }
+        ,
+        {
+            "title" : "ست سوییشرت و شلوار مکرون",
+            "category" : " هودی و سوییشرت",
+            "price" : "1190",
+            "img" : ["/dress/warm-up-set-1.jpg" , "/dress/warm-up-set-2.jpg" , "/dress/warm-up-set-3.jpg"],
+            "sex" : "none",
+            "color" : ["beige", "beige" , "blue"],
+            "size" : ["S" , "M" , "L" , "XL"],
+            "comment" : [],
+            "discount" : "no",
+            "id" : "17"
+        }
+
+    ]
+}

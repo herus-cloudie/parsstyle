@@ -2,32 +2,461 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: 'normal-vazir';
+  src: url('../public/font/ttf/Vazirmatn-Medium.ttf');
+}
+@font-face {
+  font-family: 'bold-vazir';
+  src: url('../public/font/ttf/Vazirmatn-Bold.ttf');
+}
+@font-face {
+  font-family: 'light-vazir';
+  src: url('../public/font/ttf/Vazirmatn-Light.ttf');
+}
+body{
+  font-family: normal-vazir;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* This is an example, feel free to delete this code */
+.tooltip-container {
+  --background: #4132c9;
+  --support-size: 50px;
+  --tooltip-radius: 10px 10px 10px 0;
+  --outline-border-color: #0096aa;
+  position: relative;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 0.7em 1.8em;
+  color: var(--background);
+  border: solid 2px var(--background);
+}
+
+.tooltip-container::before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: all 0.5s linear;
+  outline: 3px solid transparent;
+  background: var(--background);
+}
+.tooltip-container:hover {
+  color: white;
+}
+.tooltip-container:hover:before {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  outline-offset: 5px;
+  outline-color: var(--outline-border-color);
+}
+.tooltip {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 50%;
+  transform: translateX(-5%);
+  padding: 0.3em 0.6em;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  background: var(--background);
+  border-radius: var(--tooltip-radius);
+  color: white;
+  box-shadow: 3px 3px 0px var(--outline-border-color);
+}
+
+.tooltip::after {
+  content: "Hello!👋";
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--background);
+  text-align: center;
+  border-radius: var(--tooltip-radius);
+}
+.tooltip::before {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  border-style: solid;
+  border-width: 10px;
+  left: 0;
+  transform: translateX(-50%);
+  border-color: transparent var(--background) var(--background) transparent;
+  box-shadow: 0px 3px 0px var(--outline-border-color);
+}
+
+.tooltip-container:hover .tooltip::after {
+  animation: hidden 0.5s 1.5s linear forwards;
+}
+
+.tooltip-container:hover .tooltip {
+  top: calc(-100% - var(--support-size) * 0.5);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  animation: shake 0.5s 1s linear;
+  transition: all 0.3s 0.5s;
+}
+
+@keyframes hidden {
+  50% {
+    transform: translate(-50%, -50%) scale(0.5);
+    background-color: #1ca0f5;
+  }
+  100% {
+    transform: translate(0, -50%) scale(0.5);
+    opacity: 0;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@keyframes shake {
+  0%,
+  40%,
+  80% {
+    transform: translateX(-10%);
+  }
+  20%,
+  60%,
+  100% {
+    transform: translateX(0);
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.st2 {
+  fill: #f9c8a7;
+}
+.st3 {
+  fill: #ff9e97;
+}
+.st6 {
+  fill: #d72e48;
+}
+.st7 {
+  fill: #ffffff;
+}
+.st8 {
+  fill: #ff8d7f;
+}
+.st10 {
+  fill: #3d3d3b;
+}
+.st11 {
+  fill: #1ca0f5;
+}
+.st12 {
+  opacity: 0.2;
+}
+.st14 {
+  fill: #b7b7b7;
+}
+.st15 {
+  fill: #ead9cf;
+}
+#Calque_1 {
+  display: inline-block;
+  height: var(--support-size);
+  position: absolute;
+  opacity: 0;
+  transition: all 0.5s;
+  z-index: -1;
+  left: 0;
+  top: 0;
+}
+#left_x5F_arm_2_ {
+  transform: translateX(2px);
+}
+
+.tooltip-container:hover #Calque_1 {
+  top: calc(var(--support-size) * -1);
+  opacity: 1;
+}
+
+.header{
+  height: 65px;
+  position: fixed;
+  z-index: 1030;
+  background: white;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 2px #c9c9c9;
+}
+
+.navigation-card {
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  border-radius: 50px;
+}
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  padding: 15px;
+  border-radius: 19%;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.tab:hover {
+  background-color: rgb(227, 223, 223);
+}
+.hero{
+  position: relative;
+  top: 60px;
+}
+.paddingUl{
+  padding-right: 40px;
+  padding-top: 30px;
+}
+.baner-card{
+  width:300px;
+}
+
+.picture-side{
+  margin: 50px 0 0;
+  padding: 50px 80px;
+}
+.picture-side-text{
+  font-family: bold-vazir;
+  font-size: 30px;
+}
+.baner-card-a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.baner-card-text{
+  margin-top: -20px;
+    font-size: 20px;
+    color: #333;
+}
+.footer-1 ul{
+  display : flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.footer-1 ul p{
+  font-family: 'normal-vazir';
+  font-size: 16px;
+}
+.footer-1 ul li{
+  font-family: 'light-vazir';
+  font-size: 14px;
+  cursor: pointer;
+}
+.logo-line{
+  flex-grow: 1;
+  background-color: #c5c5c5;
+  margin-right: -35px;
+  height: 1px;
+}
+.login {
+  color: #000;
+  text-transform: uppercase;
+  display: block;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.card-sign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+  width: 300px;
+  flex-direction: column;
+  gap: 35px;
+  background: #e3e3e3;
+  box-shadow: 16px 16px 32px #c8c8c8,
+  -16px -16px 32px #fefefe;
+  border-radius: 8px;
+}
+
+.inputBox {
+  position: relative;
+  width: 250px;
+}
+
+.inputBox input {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: none;
+  color: #000;
+  font-size: 1em;
+  background: transparent;
+  border-left: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transition: 0.1s;
+  border-bottom-left-radius: 8px;
+}
+
+.inputBox span {
+  margin-top: 5px;
+  position: absolute;
+  left: 0;
+  transform: translateY(-4px);
+  margin-left: 10px;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 12px;
+  color: #000;
+  text-transform: uppercase;
+  transition: 0.5s;
+  border-radius: 8px;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+  transform: translateX(190px) translateY(-25px);
+  font-size: 0.8em;
+  padding: 5px 10px;
+  background: #000;;
+  color: #fff;
+  border: 2px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+.enter {
+  height: 45px;
+  width: 100px;
+  border-radius: 5px;
+  border: 2px solid #000;
+  cursor: pointer;
+  background-color: transparent;
+  transition: 0.5s;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 1em;
+}
+
+.enter:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.sign-page{
+  background-color: #f7ff8614;
+}
+
+.terms {
+  text-align: center;
+  margin-top: 10px;
+  color: #8d8d8d;
+  font-size: 12px;
+  clear: both;
+  padding-top: 20px;
+}
+
+.card {
+  width: 300px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  box-shadow: 0px 0px 5px #c9c9c9;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.card:hover {
+  box-shadow: 0px 0px 8px #9d9d9d;
+  scale: 1.01;
+}
+.card-price{
+  display: flex;
+  justify-content: space-between;
+}
+.card-color-size{
+  display: flex;
+  justify-content: space-between;
+}
+.card-size-group{
+  display: flex;
+  justify-content: space-around;
+}
+.card-color-group{
+  display: flex;
+  justify-content: space-around;
+}
+.price{
+  font-size: 20px;
+  font-family: bold-vazir;
+  color: #333;
+}
+.card-title{
+  padding: 20px 0 30px;
+  text-align: center;
+  /* font-size: 18px; */
+  font-family: 'bold-vazir';
+  color: black;
+}
+.text{
+  color: #787878;
+
+}
+.card-size{
+  font-size: 12px
+}
+
+.card-color{
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+}
+
+.mt-custom{
+  display: flex;
+    flex-direction: column;
+    height: 450px;
+    justify-content: space-between;
+}
+.toman{
+  font-size: 14px;
+  color: #3d3d3b;
+}
+.price-details{
+  font-size: 22px;
+  font-family: bold-vazir;
+}
+.seller{
+  font-family: light-vazir;
+}
+.title-details{
+  font-size: 25px;
+    color: #333;
+}
+.text-icon{
+  position: relative;
+  top: -6px;
+  left: -8px;
+
 }

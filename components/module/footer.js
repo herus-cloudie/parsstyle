@@ -8,8 +8,8 @@ const Footer = () => {
         <span className="logo-line"></span>
         </div>
         <div>
-        <div className="footer-1 flex lg:gap-20 md:gap-10 gap-0 flex-col md:flex-row">
-            <div className="flex  lg:gap-20 md:gap-10 gap-0 justify-around">
+        <div className="footer-1 flex lg:gap-20 md:gap-10 gap-0 flex-col md:flex-row justify-around">
+            <div className="flex  lg:gap-20 md:gap-10 gap-0 justify-around mb-9 sm:mb-0">
             <ul className="lg:py-0 lg:px-8 mb-8">
                 <p>خرید</p>
                 <li>زنانه</li>

@@ -1,7 +1,6 @@
 
-import BanerCard from "@/components/banerCard";
-import { CarouselCustom } from "@/components/carousel";
-import Tooltip from "@/components/tooltip";
+import BanerCard from "@/components/module/banerCard";
+import Tooltip from "@/components/module/tooltip";
 
 export default async function Home() {
 

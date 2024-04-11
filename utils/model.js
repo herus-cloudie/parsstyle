@@ -11,13 +11,11 @@ let ParsStyleSchema = new Schema({
         type : String,
         require : true
     },
-    Cart : {
-        default : []
-    },
+    Cart : [],
     
 } , {timestamps : true}
 )
 
 let ParsStyleUser = models.ParsStyleUser || model("ParsStyleUser" , ParsStyleSchema)
 
-export default ParsStyleUser
+export default ParsStyleUser;

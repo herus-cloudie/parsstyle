@@ -27,12 +27,14 @@ const Card = ({title , price , category , sizes , colors , img , id}) => {
                         ))
                     }
                     </div>
-                    <div className='card-size-group  flex justify-between w-2/5  flex-wrap gap-3' >
-                    {
+                    <div className='card-size-group  flex w-2/5  flex-wrap gap-3' >
+                        <span className="seller-title">پارس استایل</span>
+
+                    {/* {
                         sizes.map(size => (
                             <div className='card-size'>{size}</div>
                         ))
-                    }
+                    } */}
                     </div>
                 </div>
             </div>

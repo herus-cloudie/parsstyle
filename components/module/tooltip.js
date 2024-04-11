@@ -4,7 +4,7 @@ const Tooltip = () => {
   return (
     <div className="tooltip-container">
     <span className="tooltip">چه کمکی از دستم برمیاد؟</span>
-    <span className="text">پشتیبانی</span>
+    <span className="text-ooltip">پشتیبانی</span>
     <svg id="Calque_1" viewBox="0 0 377 270" xmlns="http://www.w3.org/2000/svg">
       <g id="phone">
         <g id="caractere_x5F_1">

@@ -1,10 +1,6 @@
 
-
-import { CarouselCustom } from '@/components/carousel';
+import CarouselDemo from '@/components/module/carousel';
 import { sp } from '@/utils/changeFormat';
-import React from 'react'
-
- 
 
 
 const Details = async ({params}) => {
@@ -16,14 +12,7 @@ const Details = async ({params}) => {
   return (
     <div className='lg:mx-20 mt-and-mb-custom sm:my-32 flex flex-col lg:flex-row items-center lg:items-start'>
         <div className='lg:w-3/5 w-4/5'>
-
-                    {
-                        img.map(item => (
-                            <CarouselCustom />
-                        ))
-                        
-                    }
-
+        <CarouselDemo img={data.img} id={details}/>
         </div>
         <div className='lg:w-2/5 w-4/5 mt-custom'>
             <div className='h-10 flex justify-between pr-3 items-center'>
@@ -76,7 +65,6 @@ const Details = async ({params}) => {
             </div>
         </div>
     </div>
-
   )
 }
 

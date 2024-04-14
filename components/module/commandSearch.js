@@ -11,26 +11,26 @@ import {
 
 export default function CommandSearch() {
   return (
-    <Command className="rounded-lg border shadow-md w-4/5 md:w-3/5 flex justify-center">
+    <Command className="rounded-lg border shadow-md w-4/5 md:w-2/5 flex justify-center">
       <CommandInput placeholder="سوییشرت , هودی ..." />
       <CommandList>
         <CommandEmpty>نتیجه ای یافت نشد!</CommandEmpty>
         <CommandGroup>
         {/* heading="پیشنهادات" */}
-          <CommandItem>
-            <span>لباس و تیشرت</span>
+          <CommandItem >
+            <span className='cursor-pointer'>لباس و تیشرت</span>
           </CommandItem>
           
-          <CommandItem>
+          <CommandItem className='cursor-pointer'>
             <span>شلوار</span>
           </CommandItem>
                 
-          <CommandItem>
+          <CommandItem className='cursor-pointer'>
             <span>ساعت</span>
           </CommandItem>
 
           
-          <CommandItem>
+          <CommandItem className='cursor-pointer'>
             <span>کت و مجلسی</span>
           </CommandItem>
 

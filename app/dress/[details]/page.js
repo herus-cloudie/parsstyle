@@ -1,18 +1,19 @@
 
+import AddToCart from '@/components/module/addToCart';
 import CarouselDemo from '@/components/module/carousel';
 import { sp } from '@/utils/changeFormat';
 
 
 const Details = async ({params}) => {
     let {details} = params;
-    let getData = await fetch(`http://localhost:4002/data/${details}`)
+    let getData = await fetch(`http://localhost:4006/data/${details}`)
     let data = await getData.json();
 
     const {img , color , title , category , price , size} = data;
   return (
     <div className='lg:mx-20 mt-and-mb-custom sm:my-32 flex flex-col lg:flex-row items-center lg:items-start'>
         <div className='lg:w-3/5 w-4/5'>
-        <CarouselDemo img={data.img} id={details}/>
+        <CarouselDemo img={img} id={details}/>
         </div>
         <div className='lg:w-2/5 w-4/5 mt-custom'>
             <div className='h-10 flex justify-between pr-3 items-center'>
@@ -30,7 +31,7 @@ const Details = async ({params}) => {
             </div>
             <div className='details-container flex justify-between'>
                 <span className='seller'>{category}</span>
-                <span className='price-details'>{sp(price + '000')}<span className='mr-1 toman'>تومان</span></span>
+                <span className='price-details'>{sp(price)}<span className='mr-1 toman'>تومان</span></span>
             </div>
             <div className='details-container flex justify-between'>
                 <div className='flex flex-col gap-3'>
@@ -60,9 +61,7 @@ const Details = async ({params}) => {
                     </div>
                 </div>
             </div>
-            <div className='details-container '>
-                <button className="enter" style={{width : '100%'}}>افزودن به سبد خرید</button>
-            </div>
+            <AddToCart data={data}/>
         </div>
     </div>
   )

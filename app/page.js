@@ -1,9 +1,10 @@
 
 import BanerCard from "@/components/module/banerCard";
+import Category from "@/components/module/category";
 import Tooltip from "@/components/module/tooltip";
 
 export default async function Home() {
-
+  let active = 'men';
   return (
     <div dir="rtl">
       <main>
@@ -14,22 +15,16 @@ export default async function Home() {
           <h2 className="picture-side-text ">
             دسته بندی
           </h2>
-          <div className="w-full flex justify-center">
-            <div className="flex justify-around flex-wrap">
-              <BanerCard text={'کت و شلوار'} image={'/picture/suit-o.webp'}/>
-              <BanerCard text={'کفش'} image={'/picture/shoes-o.webp'}/>
-              <BanerCard text={'لباس'} image={'/picture/tshirt-o.webp'}/> 
-              <BanerCard text={'شلوار'} image={'/picture/pants-o.webp'}/>
-            </div>
-          </div>
+          <Category />
         </div>
-        <div style={{backgroundColor : '#f5f5dc87'}} className=" w-full h-full md:px-20 px-5  py-20">
+        <div style={{backgroundColor : '#F5F4EF'}} className=" w-full h-full md:px-20 px-5  py-20">
           <div className="whyus md:flex-row-reverse w-full flex flex-col-reverse items-center justify-around">
             <div className="md:w-2/5 w-4/5">
               <img className="rounded w-full h-full" src="/picture/parche.jpg" />
             </div>
-            <div className="md:w-2/5 w-5/5">
+            <div className="md:w-2/5 w-5/5 text-center mb-10">
               <h3 style={{lineHeight: '50px'}} className="md:text-3xl text-2xl  mb-16 md:mb-0 text-center">مهم نیست بودجت چقدره. اینجا با هر قیمتی یک گزینه داری!</h3>
+              <button  className="enter md:mt-8 " style={{width : '200px' , borderRadius : '30px'}}>مشاهده تخفیف ها</button>
             </div>
           </div>
           <div className="whyus w-full flex md:flex-row  flex-col items-center justify-around pt-8">
@@ -42,6 +37,7 @@ export default async function Home() {
           </div>
         </div>
       </main>
+
 
       <div className="animate-bounce-custom bg-white rounded fixed bottom-6 left-5">
             <Tooltip />

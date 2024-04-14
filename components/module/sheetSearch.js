@@ -46,15 +46,15 @@ export default function SheetSearch() {
         </a>
       </SheetTrigger>
       <SheetContent  style={{zIndex : '1032'}} side={'top'}>
-        <SheetHeader className={'mt-10'}>
+        <SheetHeader className={'mt-2'}>
           <SheetTitle className="flex mr-10 mb-10">سرچ دسته بندی</SheetTitle>
           <CommandSearch />
         </SheetHeader>
 
         <SheetFooter>
-            <div className="block mx-auto mt-10 w-full">
+            <div className="block mx-auto mt-10 w-2/5">
             <SheetClose asChild>
-                <Button className="block w-full " type="submit">جستجو</Button>
+                <Button className="block w-full" type="submit">جستجو</Button>
             </SheetClose>
             </div>
         </SheetFooter>

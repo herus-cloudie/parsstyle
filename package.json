@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "json-serv": "json-server --watch db.json --port 4002"
+    "json-serv": "json-server --watch db.json --port 4006"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",

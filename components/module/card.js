@@ -3,7 +3,7 @@
 import { sp } from "@/utils/changeFormat";
 import { useRouter } from "next/navigation"
 
-const Card = ({title , price , category , sizes , colors , img , id}) => {
+const Card = ({title , price , category , seller , colors , img , id}) => {
     let router = useRouter();
   return (
     <div onClick={() => router.push(`/dress/${id}`)} className='card m-5'>
@@ -28,13 +28,11 @@ const Card = ({title , price , category , sizes , colors , img , id}) => {
                     }
                     </div>
                     <div className='card-size-group  flex w-2/5  flex-wrap gap-3' >
-                        <span className="seller-title">پارس استایل</span>
-
-                    {/* {
-                        sizes.map(size => (
-                            <div className='card-size'>{size}</div>
-                        ))
-                    } */}
+                        {
+                            seller == 'parsstyle' ? <span className="seller-title">پارس استایل</span> 
+                            : seller == 'calzino' ? <span className="seller-title">کالزینو</span> 
+                            : seller == 'lebasina' ? <span className="seller-title">لباسینا</span> : null
+                        }
                     </div>
                 </div>
             </div>

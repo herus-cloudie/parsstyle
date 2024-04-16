@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer pt-0 px-4 pb-4 md:px-10 md:pb-10 -mt-3 flex flex-col justify-center">
         <div className="flex items-center">
-        <img className="w-60" src="/logo/logopars-removebg-preview.png"/>
+        <img alt="main logo parsstyle" className="w-60" src="/logo/logopars-removebg-preview.png"/>
         <span className="logo-line"></span>
         </div>
         <div>
@@ -37,10 +37,10 @@ const Footer = () => {
             <div className="m-3">تلفن پشتیبانی : <span className="pt-1 pr-2">09394142756</span></div>
             <div className="flex justify-between m-14"> 
                 <div>
-                <img className="cursor-pointer" src="/logo/instagram.svg" width={30} />
+                <img alt="instagram icon" className="cursor-pointer" src="/logo/instagram.svg" width={30} />
                 </div>
                 <div>
-                <img className="cursor-pointer" src="/logo/telegram.png"  width={30}/>
+                <img alt="telegram icon" className="cursor-pointer" src="/logo/telegram.png"  width={30}/>
                 </div>
             </div>
             </div>

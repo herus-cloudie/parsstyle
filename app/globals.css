@@ -629,7 +629,7 @@ body{
 }
 .cart-card{
   box-shadow: rgb(201 201 201) 0px 0px 4px;
-  height: 220px;
+  height: 200px;
   max-width: 800px;
   margin: 25px auto;
 }
@@ -638,10 +638,14 @@ body{
   .cart-card{
     height: 400px;
   }
+  .deleteBtn{
+    top: -12px !important;
+    left: 237px !important;
+  }
 }
 @media (max-width : 640px) {
   .cart-card{
-    height: 500px;
+    height: 450px;
     width: 300px;
   }
   .done-progress{
@@ -656,13 +660,13 @@ body{
     margin-top: 30px;
   }
   .deleteBtn{
-    left: -125px;
-    top: 4px
+    left: -148px !important;
+    top: -16px !important;
   }
 }
 .deleteBtn{
-  top: -83px;
-  left: -711px;
+  top: -98px;
+  left: 37px;
 }
 
 .bin-button {

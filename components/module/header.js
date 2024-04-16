@@ -9,7 +9,7 @@ const Header = async () => {
   return (
     <header>
         <a href='/' className="flex items-center justify-center">
-            <img className="fixed animate-pulse cursor-pointer left-logo-responsive" style={{width : '350px', zIndex : '1031' , top : "-60px"}} src="/logo/logopars-removebg-preview.png"/>
+            <img alt='main logo parsstyle' className="fixed animate-pulse cursor-pointer left-logo-responsive" style={{width : '350px', zIndex : '1031' , top : "-60px"}} src="/logo/logopars-removebg-preview.png"/>
         </a>
         <div className="flex header">
             <Sidebar session={session}/>
@@ -18,7 +18,7 @@ const Header = async () => {
                 {
                   session ? 
                   <>
-                    <a href='/cart'><img className="tab" src="/logo/cart.svg" /></a>
+                    <a href='/cart'><img alt='cart logo' className="tab" src="/logo/cart.svg" /></a>
                     <a href='/profile' className="tab">
                       <svg
                         width="104"

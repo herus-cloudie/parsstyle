@@ -8,7 +8,7 @@ const Card = ({title , price , category , seller , colors , img , id}) => {
   return (
     <div onClick={() => router.push(`/dress/${id}`)} className='card m-5'>
         <div className='card-img'>
-            <img className='w-full rounded' src={img.length > 1 ? img[0] : img}/>
+            <img alt="card image" className='w-full rounded' src={img.length > 1 ? img[0] : img}/>
         </div>
         <div className='card-context'>
             <div className='card-price'>

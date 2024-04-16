@@ -1,13 +1,30 @@
-import React from 'react'
+'use client'
 
-const DeleteBtn = () => {
+import { useToast } from '../ui/use-toast';
+
+const DeleteBtn = ({id , setState}) => {
+    const {toast} = useToast();
+    
+    const deleteHandler = async (e ,id) =>{
+        const progress = await fetch('api/cart' , {
+            method : 'DELETE',
+            body : JSON.stringify(id),
+            headers : {"Content-Type": "application/json"}
+        })
+        const Data = await progress.json();
+        setState(Data.otherProduct)
+        toast({
+            variant: "destructive",
+            title: "محصول از سبد خرید شما حذف شد",
+          })
+    }
   return (
-    <button class="bin-button">
+    <button onClick={(e) => deleteHandler(e , id)} className="bin-button">
         <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 39 7"
-        class="bin-top"
+        className="bin-top"
     >
         <line stroke-width="4" stroke="white" y2="5" x2="39" y1="5"></line>
         <line
@@ -23,7 +40,7 @@ const DeleteBtn = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 33 39"
-            class="bin-bottom"
+            className="bin-bottom"
         >
             <mask fill="white" id="path-1-inside-1_8_19">
             <path
@@ -42,7 +59,7 @@ const DeleteBtn = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 89 80"
-            class="garbage"
+            className="garbage"
         >
             <path
             fill="white"

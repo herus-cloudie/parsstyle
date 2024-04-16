@@ -126,7 +126,7 @@ export default function SignPage(){
                             <span>رمزعبور</span>
                         </div>
                         <div onClick={() => seView(!view)} className="mt-6 cursor-pointer">
-                            <img width={25} src={`${view ? "/logo/view.png" : "/logo/hide.png"}`}/>
+                            <img alt='hide password icon' width={25} src={`${view ? "/logo/view.png" : "/logo/hide.png"}`}/>
                         </div>
                         <div className="text-gray-600 text-xs">
                             حساب کاربری ندارید؟ <span onClick={resetDataAndChangetoSignup} className="mr-2 cursor-pointer hover:opacity-70" style={{color : 'rgb(204, 181, 52)'}}>ساخت حساب</span>
@@ -161,7 +161,7 @@ export default function SignPage(){
                             <span>تکرار رمزعبور</span>
                         </div>
                         <div onClick={() => seView(!view)} className="mt-4 cursor-pointer">
-                            <img width={25} src={`${view ? "/logo/view.png" : "/logo/hide.png"}`}/>
+                            <img alt='hide password icon' width={25} src={`${view ? "/logo/view.png" : "/logo/hide.png"}`}/>
                         </div>
                         <div className="text-gray-600 text-xs">
                             حساب کاربری دارید؟ <span onClick={resetDataAndChangetoSignin} className="mr-2 cursor-pointer hover:opacity-70" style={{color : 'rgb(204, 181, 52)'}}>ورود به حساب</span>

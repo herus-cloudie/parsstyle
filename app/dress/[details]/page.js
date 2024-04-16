@@ -18,10 +18,10 @@ const Details = async ({params}) => {
         <div className='lg:w-2/5 w-4/5 mt-custom'>
             <div className='h-10 flex justify-between pr-3 items-center'>
                 <div style={{width : '150px'}} className='flex justify-between'>
-                    <span style={{width : '50px'}} className='px-3 flex items-baseline'><img className='star-icon' src='/logo/star.png'/><span className='text-icon'>4.2</span></span>
-                    <span style={{width : '50px'}} className='px-3 flex items-baseline'><img className='comment-icon' src='/logo/comment.png'/><span className='text-icon'>213</span></span>
+                    <span style={{width : '50px'}} className='px-3 flex items-baseline'><img alt='star icon' className='star-icon' src='/logo/star.png'/><span className='text-icon'>4.2</span></span>
+                    <span style={{width : '50px'}} className='px-3 flex items-baseline'><img alt='comment icon' className='comment-icon' src='/logo/comment.png'/><span className='text-icon'>213</span></span>
                 </div>
-                <span style={{width : '50px'}} className='px-3'><img className='share-icon' src='/logo/share.png'/></span>
+                <span style={{width : '50px'}} className='px-3'><img alt='share icon' className='share-icon' src='/logo/share.png'/></span>
             </div>
             <div className='details-container'>
                 <span className='seller'>فروشنده : پارس استایل</span>
@@ -37,11 +37,11 @@ const Details = async ({params}) => {
                 <div className='flex flex-col gap-3'>
                     <div className='flex gap-2 items-center'>
                         <span className='little-custom-font'>اماده تحویل</span>
-                        <img style={{width : '30px'}}  src='/logo/delivery-truck.png'/>
+                        <img alt='delivery icon' style={{width : '30px'}}  src='/logo/delivery-truck.png'/>
                     </div>
                     <div  className='flex gap-2 items-center'>
                         <span className='little-custom-font'>ضمانت کالا</span>
-                        <img style={{width : '25px'}} src='/logo/warranty.png'/>
+                        <img alt='warranty icon' style={{width : '25px'}} src='/logo/warranty.png'/>
                     </div>
                 </div>
                 <div className='flex flex-col gap-3 justify-between'>

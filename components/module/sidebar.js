@@ -10,14 +10,14 @@ const Sidebar = ({session}) => {
   return (
     <>    
         <div onClick={() => setState(true)} className="cursor-pointer">
-            <img className="mr-6" src="https://d1fufvy4xao6k9.cloudfront.net/images/menu/burger2.svg"/>
+            <img alt='open hamburger menu logo' className="mr-6" src="https://d1fufvy4xao6k9.cloudfront.net/images/menu/burger2.svg"/>
         </div>
         {
         state 
         ?
         <div className="fixed top-0 right-0  w-72 h-full bg-gray-50 side-bar" >
             <div onClick={() => setState(false)} className="cursor-pointer">
-                <img className="mr-10 mt-6" src="https://d1fufvy4xao6k9.cloudfront.net/images/menu/close.svg"/>
+                <img alt='close hamburger menu logo' className="mr-10 mt-6" src="https://d1fufvy4xao6k9.cloudfront.net/images/menu/close.svg"/>
             </div>
             <ul className="paddingUl gap-9 flex flex-col">
                 <div className="navigation-card menu-navigation">

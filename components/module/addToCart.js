@@ -3,11 +3,14 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import Loaders from "./loaders";
+import { useToast } from "../ui/use-toast";
+import { ToastAction } from "../ui/toast";
+import Link from "next/link";
 
 const AddToCart = ({data}) => {
     const [state, setState] = useState(false);
     const [loading, setLoading] = useState(true);
-
+    const {toast} = useToast();
     useEffect(() => {
          async function IfAddedAlready() {
             setLoading(true)
@@ -33,8 +36,20 @@ const AddToCart = ({data}) => {
         })
         setLoading(false)
         let Data = await progress.json();
-        Data.message == 'added' ? setState(true) : setState(false)
-        console.log(Data)
+        if(Data.message != 'added'){
+           setState(false)  
+           toast({
+            variant:"destructive",
+            title: "محصول از سبد خرید شما حذف شد",
+          })
+        } else{
+          setState(true)  
+          toast({
+            variant: "successful",
+            title: "محصول شما به سبد خرید افزوده شد",
+            action: <ToastAction altText="Try again"><Link href={'/cart'}>برو به سبد</Link></ToastAction>,
+          })
+        } 
     }
 
   return (

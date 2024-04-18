@@ -52,8 +52,7 @@ const staticData = [
             ,{value : 'women' , context : 'زنانه'}
             ,{value : 'child' , context : 'بچگانه'}
         ]
-    },
-    
-
+    }
 ]
-export {staticData}
+const cityData = ['تهران' , 'کرج' , 'رشت' , 'قم' , 'اصفهان' , 'شیراز' ,'اردبیل' , 'کاشان' ,'لاهیجان' , 'پرند' , 'پردیس' , 'بندرعباس'  ,'زنجان' , 'مشهد']
+export {staticData , cityData}

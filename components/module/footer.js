@@ -2,13 +2,13 @@
 
 const Footer = () => {
   return (
-    <footer className="footer pt-0 px-4 pb-4 md:px-10 md:pb-10 -mt-3 flex flex-col justify-center">
+    <footer className="footer pt-0  -mt-3 flex flex-col justify-center">
         <div className="flex items-center">
-        <img alt="main logo parsstyle" className="w-60" src="/logo/logopars-removebg-preview.png"/>
-        <span className="logo-line"></span>
+            <img alt="main logo parsstyle" className="w-60" src="/logo/logopars-removebg-preview.png"/>
+            <span className="logo-line"></span>
         </div>
         <div>
-        <div className="footer-1 flex lg:gap-20 md:gap-10 gap-0 flex-col md:flex-row justify-around">
+        <div className="footer-1 flex lg:gap-20b px-4 md:px-10   md:gap-10 gap-0 flex-col md:flex-row justify-around">
             <div className="flex  lg:gap-20 md:gap-10 gap-0 justify-around mb-9 sm:mb-0">
             <ul className="lg:py-0 lg:px-8 mb-8">
                 <p>خرید</p>
@@ -46,18 +46,10 @@ const Footer = () => {
             </div>
         </div>
         </div>
-        <div className="footer-2">
-            {/* fdsafsf */}
+        <div className="footer-2 text-center p-2 pt-10 text-gray-700">
+            <span className="border-t pt-1">کلیات حقوق این وبسایت متعلق به امیرمحمد مسلمی میباشد ©</span>
         </div>
-        <div className="footer-3">
-            
         </div>
-        <div className="footer-4">
-            
-        </div>
-        
-        </div>
-        
     </footer>
   )
 }

@@ -45,12 +45,15 @@ const Dress = async ({searchParams}) => {
                 <div className='flex text-center flex-col'>
                     <FilterPrice />
                 </div>
-                <div className='mt-10 mb-8 mx-10 flex gap-4 justify-evenly items-end'>
+                <div className='mt-10 mb-8 mx-10 flex flex-wrap gap-4 justify-evenly items-end'>
                    <NavigationFilter/> 
                 </div>
             </div>
+            <div className='my-8 border-b-4 border-black w-36 pb-2 mr-20 text-start text-4xl' style={{color : '#333'}}>محصولات</div>
         </div>
+        
         <div className="flex justify-evenly flex-wrap mt-4">
+            
             {
                 filter.length > 0 ?
                 filter.map(item => (

@@ -84,8 +84,8 @@ export function NavigationFilter() {
             <div className="text-sm mb-2 text-zinc-800">
               {title}
             </div>
-            <Select key={title} onValueChange={changeHandler}>
-                <SelectTrigger className="w-[180px]">
+            <Select className="max-w-10" key={title} onValueChange={changeHandler}>
+                <SelectTrigger className="w-[100px] sm:w-[150px] ">
                     <SelectValue placeholder={title == 'سایز' ? dynamicValueSize : title == 'رنگ' ? dynamicValueColor
                      : title == 'فروشنده' ? dynamicValueSeller : title == 'جنسیت' ? dynamicValueSex : null } />
                 </SelectTrigger>

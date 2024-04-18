@@ -20,7 +20,8 @@ const CartPage = () => {
    }
    GetData()
 } , [])
-
+  let allPrice = state.map(item => +item.price)
+  const finalPrice = allPrice.reduce((accumulator, currentValue) => accumulator + currentValue , 0);
   return (
     <>
       {
@@ -58,18 +59,19 @@ const CartPage = () => {
             </div>
           </div>
           <div className='md:mx-10 my-10 lg:m-20 mx-5 '>
-          
+          <h3 className='mr-8 my-10 lg:mt-0 text-3xl text-zinc-7h00'>سبد خرید</h3>
             {
-              state.map(item => {
+              state.map((item , index) => {
                 let discount = ((item.price / 100) - item.discount) * item.price ;
+
                 return(
                   <div>
-                    <h3 className='mr-8 my-10 lg:mt-0 text-3xl text-zinc-7h00'>سبد خرید</h3>
                     <div className='w-full flex cart-card flex-col-reverse lg:flex-row-reverse justify-between cart-card lg:px-5 px-6 sm:py-5 items-center '>
                       <Link href={`/dress/${item.id}`}  className='flex sm:justify-between -pt-7  justify-between pb-4 sm:pb-0 sm:flex-row-reverse flex-col-reverse lg:w-3/4 w-full md:w-4/5 h-full lg:border-none border-dotted border-t-2 border-zinc-300'>
-                        <div className='flex justify-around flex-col '>
-                          <div className='flex items-baseline justify-between sm:block '>
-                            <div className='flex items-center  py-2 sm:pb-0 text-zinc-500 '>
+                        <div className='flex justify-around flex-col -mt-14'>
+                          <span className='cart-number text-2xl'>{sp(index + 1)}</span>
+                          <div className='flex items-baseline justify-between sm:block'>
+                            <div className='flex items-center  py-2 sm:pb-0 text-zinc-500'>
                               قیمت : <div className=' mr-1'> {sp(item.price)}</div> <span className='text-xs mr-1'>تومان</span>  
                             </div>
                             <div className='pb-3 sm:pb-0 sm:pt-4' style={{color : '#b78f1694'}}>
@@ -89,7 +91,7 @@ const CartPage = () => {
                           </div>
                           <div className='flex justify-around'>
                             <div className='text-zinc-500 text-sm pb-3 sm:pb-0 ml-4'>
-                              سایز : XL
+                            سایز : <span className='relative' style={{top : '1px'}}>{item.size[0]}</span>
                             </div>
                             <div className='text-zinc-500 text-sm pb-3 sm:pb-0  mr-4'>
                               رنگ : قرمز
@@ -107,8 +109,32 @@ const CartPage = () => {
               })
             }
           </div>
-          <div>
-            
+
+          <div className='border min-h-96 w-80 mx-auto p-5' style={{backgroundColor : '#F5F4EF'}}>
+            <div className='text-xl text-center border-b-4 pb-2 border-white'>
+              <h3>اطلاعات پرداخت</h3>
+            </div>
+            <div className='mt-10'>
+              <div className="inputBox mx-auto border-b-4 pb-6 border-white">
+                  <input dir="rtl" name="offer code"  type="text"/>
+                  <span className="user">کد تخفیف</span>
+              </div>
+              <button className='border offer-input border-black rounded px-3 py-1'>اعمال</button>
+              <div className='pb-6 border-b-4  border-white'>
+                <div className='flex justify-between'>
+                  جمع کل <span>{sp(finalPrice)} تومان</span>
+                </div>
+                <div className='flex justify-between mt-5'>
+                   تخفیف <span>{sp(0)} تومان</span>
+                </div>
+                <div className='flex justify-between mt-5 font-semibold text-zinc-800' style={{fontSize : '17px'}}>
+                   مبلغ قابل پرداخت <span>{sp(finalPrice)} تومان</span>
+                </div>
+              </div>
+              <div className='flex justify-center mt-5'>
+                <button className='enter' style={{width : '150px'}}>تکمیل فرآیند خرید</button>
+              </div>
+            </div>
           </div>
         </div>
         

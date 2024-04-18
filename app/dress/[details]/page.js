@@ -11,9 +11,9 @@ const Details = async ({params}) => {
 
     const {img , color , title , category , price , size} = data;
   return (
-    <div className='lg:mx-20 mt-and-mb-custom sm:my-32 flex flex-col lg:flex-row items-center lg:items-start'>
-        <div className='lg:w-3/5 w-4/5'>
-        <CarouselDemo img={img} id={details}/>
+    <div className='lg:mx-20 lg:mt-32 mb-20 sm:mt-20 flex flex-col lg:flex-row items-center justify-between lg:items-start'>
+        <div className='lg:w-3/5 w-4/5 flex justify-center mt-16 sm:mt-0 mb-10 lg:mb-0 lg:-mr-10'>
+            <CarouselDemo img={img} id={details}/>
         </div>
         <div className='lg:w-2/5 w-4/5 mt-custom'>
             <div className='h-10 flex justify-between pr-3 items-center'>

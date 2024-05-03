@@ -1,23 +1,32 @@
-
+'use client'
 
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
   CommandInput,
-  CommandItem,
   CommandList,
 } from "@/components/ui/command"
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
-export default function CommandSearch() {
+export default function CommandSearch({setSearchValue , placeholder , searchValue}) {
+  
+  let searchParams = useSearchParams();
+  let [state , setState]= useState(searchParams.get('search'));
+  
+  const changeHandler = text =>{
+    setSearchValue(text);
+    setState(text)
+  } 
+
   return (
-    <Command className="rounded-lg border shadow-md w-4/5 md:w-2/5 flex justify-center">
-      <CommandInput placeholder="سوییشرت , هودی ..." />
+    <Command className="rounded-lg border shadow-md w-4/5 flex justify-center">
+      <CommandInput placeholder={placeholder} value={state} onValueChange={changeHandler}/>
       <CommandList>
-        <CommandEmpty>نتیجه ای یافت نشد!</CommandEmpty>
+        {/* <CommandEmpty>نتیجه ای یافت نشد!</CommandEmpty> */}
         <CommandGroup>
         {/* heading="پیشنهادات" */}
-          <CommandItem >
+          {/* <CommandItem >
             <span className='cursor-pointer'>لباس و تیشرت</span>
           </CommandItem>
           
@@ -32,7 +41,7 @@ export default function CommandSearch() {
           
           <CommandItem className='cursor-pointer'>
             <span>کت و مجلسی</span>
-          </CommandItem>
+          </CommandItem> */}
 
         </CommandGroup>
       </CommandList>

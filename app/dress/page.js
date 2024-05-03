@@ -1,15 +1,22 @@
 import Card from '@/components/module/card';
-import FilterPrice from '@/components/module/filterPrice';
-import { NavigationFilter }  from '@/components/module/navigationFilter';
+import FilterSearch from '@/components/module/filterSearch';
+import NoResult from '@/components/module/noResult';
+import SheetFilter from '@/components/module/sheetFilter';
+import SheetSearch from '@/components/module/sheetSearch';
+import { Button } from '@/components/ui/button';
 
 const Dress = async ({searchParams}) => {
-    let getData = await fetch('http://localhost:4006/data')
+    let getData = await fetch('http://localhost:4009/data')
     let data = await getData.json();
 
     function filterData(data, searchParams) {
         let filteredData = data;
-    
+        if (searchParams.search) {
+        filteredData = filteredData.filter(item => item.title.includes(searchParams.search))
+        }
         if (searchParams.color) {
+            filteredData = filteredData.filter(item => item.color.includes(searchParams.color));
+        } if (searchParams.color) {
             filteredData = filteredData.filter(item => item.color.includes(searchParams.color));
         }
     
@@ -31,25 +38,21 @@ const Dress = async ({searchParams}) => {
         if (searchParams.sex) {
             filteredData = filteredData.filter(item => item.sex == searchParams.sex ||  item.sex == 'none');
         }
-        
+        if (searchParams.off == 'yes') {
+            filteredData = filteredData.filter(item => item.discount != 'no');
+        }
         return filteredData;
     }
 
     let filter = filterData(data , searchParams)
-
-
   return (
     <div>
-        <div className='text-center'>
-            <div className='mt-24 sm:mx-10 flex flex-col' style={{borderBottom:' 1px solid #00000030'}}>
-                <div className='flex text-center flex-col'>
-                    <FilterPrice />
-                </div>
-                <div className='mt-10 mb-8 mx-10 flex flex-wrap gap-4 justify-evenly items-end'>
-                   <NavigationFilter/> 
-                </div>
+        <div className='text-center mt-20 sm:mt-32 flex flex-col sm:flex-row sm:justify-between items-center border-b'>
+            <div className='my-8 border-b-4 border-black w-36 pb-2 sm:mr-20 text-start text-4xl' style={{color : '#333'}}>محصولات</div>
+            <div className='flex justify-center sm:justify-between sm:w-1/2 w-full pb-5 sm:pb-0'>
+                <div className='ml-8'><SheetSearch><Button>جستجو</Button></SheetSearch></div>      
+                <div className='sm:ml-20'><SheetFilter /></div>
             </div>
-            <div className='my-8 border-b-4 border-black w-36 pb-2 mr-20 text-start text-4xl' style={{color : '#333'}}>محصولات</div>
         </div>
         
         <div className="flex justify-evenly flex-wrap mt-4">
@@ -57,10 +60,10 @@ const Dress = async ({searchParams}) => {
             {
                 filter.length > 0 ?
                 filter.map(item => (
-                    <Card key={item.id} price={item.price} seller={item.seller} category={item.category} title={item.title} sizes={item.size} colors={item.color} img={item.img} id={item.id}/>
+                    <Card key={item.id} discount={item.discount} price={item.price} seller={item.seller} category={item.category} title={item.title} sizes={item.size} colors={item.color} img={item.img} id={item.id}/>
                 ))  
                 :
-                <p className='text-xl text-stone-500 mb-52 mt-10'>متاسفانه محصولی با این مشخصات پیدا نکردیم!</p>
+                <NoResult />
             }
         </div>
     </div>

@@ -3,16 +3,29 @@
 import { sp } from "@/utils/changeFormat";
 import { useRouter } from "next/navigation"
 
-const Card = ({title , price , category , seller , colors , img , id}) => {
+const Card = ({title , price , category , seller , colors , img , id  , discount}) => {
     let router = useRouter();
+    console.log(title , discount == 'no')
   return (
-    <div onClick={() => router.push(`/dress/${id}`)} className='card m-5'>
+    <div onClick={() => router.push(`/dress/${id}`)} className='card m-5 overflow-hidden'>
+        {
+            discount !== 'no' ? 
+            <div className="offer-card">
+                <span className="mr-12 text-white text-xl">{sp(discount) + '%'}</span>
+            </div>: null
+        } 
         <div className='card-img'>
             <img alt="card image" className='w-full rounded' src={img.length > 1 ? img[0] : img}/>
         </div>
         <div className='card-context'>
             <div className='card-price'>
-                <span dir='ltr' className='price'>{sp(price)} T </span>
+                {
+                    discount == 'no' ? <span dir='ltr' className='price'>{sp(price)} T </span> 
+                    : <div>
+                        <span dir='ltr' className='price'>{sp(price  - (price  / 100 * discount))} T </span> 
+                        <del dir='ltr' className='text-[#a8a8a8] relative top-4'>{sp(price)}</del>
+                    </div>
+                }
                 <p className='text'>{category}</p>
             </div>
             <div className='card-color-size flex flex-col'>

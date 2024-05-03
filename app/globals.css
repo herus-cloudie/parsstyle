@@ -182,7 +182,6 @@ body{
 #left_x5F_arm_2_ {
   transform: translateX(2px);
 }
-
 .tooltip-container:hover #Calque_1 {
   top: calc(var(--support-size) * -1);
   opacity: 1;
@@ -436,6 +435,7 @@ body{
 .card-color{
   width: .8rem;
   height: .8rem;
+  border: #adadad solid 1px;
   border-radius: 50%;
 }
 
@@ -765,4 +765,54 @@ body{
   left: -200px;
   font-size: small;
   background-color: white;
+}
+.text-decoration{
+ 
+ color: #d9d3d8;
+}
+.ribbon {
+  position: absolute;
+  display: inline-block;
+  
+  top: 1em;
+  right: 1.8em;
+  
+  max-width: 5em;
+  
+  color: #fff;
+  
+  z-index: 1;
+}
+
+.ribbon::after {
+  position: absolute;
+  top: 0;
+  right: -6em;
+  content: "";
+  height: 4em;
+  width: 15em;
+  transform: rotatez(45deg);
+  background-color: #ffbc00;
+  z-index: -1;
+}
+/* .ribbon-box{
+  position: relative;
+  overflow: hidden;
+} */
+.ribbon-text{
+  position: absolute;
+  top: 25px;
+  right: 0px;
+  font-size: 20px;
+  color: white;
+}
+
+.offer-card{
+  position: relative;
+  background: #ffbc00;
+  width: 150px;
+  height: 25px;
+  right: -50px;
+  transition: -4px;
+  transform: rotate(0.13turn);
 }

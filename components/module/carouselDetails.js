@@ -8,12 +8,20 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { sp } from "@/utils/changeFormat"
 
-export default function CarouselDemo({img , id}) {
+export default function CarouselDetails({img , id , discount}) {
   return (
     <div dir="ltr">
       <Carousel className="w-full md:max-w-[480px] sm:max-w-[400px]">
+   
         <CarouselContent>
+          <div className='ribbon-box'>
+              {
+                  discount !== 'no' ? 
+                  <div className='ribbon'><span className="ribbon-text">{sp(discount) + '%'}</span></div> : null
+              } 
+          </div>
           {
             img.map(img => (
               <CarouselItem key={id}>

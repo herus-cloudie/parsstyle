@@ -9,7 +9,7 @@
             "color" : ["beige", "black" ,  "blue" , "red" , "#f45e56"],
             "size" : ["S" , "M" , "L" , "XL"],
             "comment" : [],
-            "discount" : "no",
+            "discount" : "10",
             "seller" : "parsstyle",
             "id" : "1"
         },
@@ -35,7 +35,7 @@
             "color" : ["beige", "black" , "blue"],
             "size" : ["S" , "M" , "L" , "XL"],
             "comment" : [],
-            "discount" : "no",
+            "discount" : "15",
             "seller" : "lebasina",
             "id" : "3"
         },
@@ -61,7 +61,7 @@
             "color" : ["beige", "black" , "blue"],
             "size" : ["S" , "M" , "L" , "XL"],
             "comment" : [],
-            "discount" : "20",
+            "discount" : "5",
             "seller" : "parsstyle",
             "id" : "5"
         },
@@ -74,7 +74,7 @@
             "color" : ["beige", "red" , "blue"],
             "size" : ["S" , "M" , "L" , "XL"],
             "comment" : [],
-            "discount" : "no",
+            "discount" : "3",
             "seller" : "lebasina",
             "id" : "6"
         },
@@ -128,7 +128,7 @@
             "color" : ["beige", "black" , "blue"],
             "size" : ["S" , "M" , "L" , "XL"],
             "comment" : [],
-            "discount" : "no",
+            "discount" : "22",
             "seller" : "calzino",
             "id" : "10"
         }
@@ -172,7 +172,7 @@
             "color" : ["beige",  "blue" , "blue"],
             "size" : ["S" , "M" , "L" , "XL"],
             "comment" : [],
-            "discount" : "no",
+            "discount" : "18",
             "seller" : "parsstyle",
             "id" : "13"
         }
@@ -200,7 +200,7 @@
             "color" : ["beige", "white" , "blue"],
             "size" : ["S" , "M" , "L" , "XL"],
             "comment" : [],
-            "discount" : "no",
+            "discount" : "4",
             "seller" : "calzino",
             "id" : "15"
         }
@@ -228,7 +228,7 @@
             "color" : ["beige", "beige" , "blue"],
             "size" : ["S" , "M" , "L" , "XL"],
             "comment" : [],
-            "discount" : "no",
+            "discount" : "8",
             "seller" : "parsstyle",
             "id" : "17"
         }

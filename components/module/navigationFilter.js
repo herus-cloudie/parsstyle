@@ -80,7 +80,7 @@ export function NavigationFilter() {
 
     {
       staticData.map(({title , option}) => (
-        <div className="flex flex-col justify-center">
+        <div style={{zIndex : '1035'}} className="flex flex-col justify-center">
             <div className="text-sm mb-2 text-zinc-800">
               {title}
             </div>

@@ -50,9 +50,10 @@ const staticData = [
             {value : 'allSex' , context : 'همه'}
             ,{value : 'men' , context : 'مردانه'}
             ,{value : 'women' , context : 'زنانه'}
-            ,{value : 'child' , context : 'بچگانه'}
+            // ,{value : 'child' , context : 'بچگانه'}
         ]
     }
 ]
 const cityData = ['تهران' , 'کرج' , 'رشت' , 'قم' , 'اصفهان' , 'شیراز' ,'اردبیل' , 'کاشان' ,'لاهیجان' , 'پرند' , 'پردیس' , 'بندرعباس'  ,'زنجان' , 'مشهد']
-export {staticData , cityData}
+const scoreData = [1 , 2 , 3 , 4 , 5]
+export {staticData , cityData , scoreData}

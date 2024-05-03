@@ -10,7 +10,7 @@ const Category = () => {
         <div className="flex justify-center pt-10 lg:pt-0">
             <div style={active == 'men' ? { borderBottom: '4px solid #000', fontWeight: '500'} : null} onClick={() => setActive('men')} className="px-6 custom-category">مردانه</div>
             <div style={active == 'women' ? { borderBottom: '4px solid #000', fontWeight: '500'} : null} onClick={() => setActive('women')} className="px-6 custom-category">زنانه</div>
-            <div style={active == 'child' ? { borderBottom: '4px solid #000', fontWeight: '500'} : null} onClick={() => setActive('child')} className="px-6 custom-category">بچگانه</div>
+            {/* <div style={active == 'child' ? { borderBottom: '4px solid #000', fontWeight: '500'} : null} onClick={() => setActive('child')} className="px-6 custom-category">بچگانه</div> */}
         </div>
         <div className="flex justify-around flex-wrap">
             {

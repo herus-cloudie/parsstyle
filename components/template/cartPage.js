@@ -122,7 +122,7 @@ const CartPage = () => {
                 let priceWithDiscount = price  - (price  / 100 * discount);
                 !isNaN(priceWithDiscount) ? Discount.push(price - priceWithDiscount) : null
                 return(
-                  <div>
+                  <div key={index}>
                     <div className='w-full flex cart-card flex-col-reverse lg:flex-row-reverse justify-between cart-card lg:px-5 px-6 sm:py-5 items-center '>
                       <Link href={`/dress/${id}`}  className='flex sm:justify-between -pt-7  justify-between pb-4 sm:pb-0 sm:flex-row-reverse flex-col-reverse lg:w-3/4 w-full md:w-4/5 h-full lg:border-none border-dotted border-t-2 border-zinc-300'>
                         <div className='flex justify-around flex-col -mt-14'>

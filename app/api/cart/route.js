@@ -1,7 +1,7 @@
 
 
 import ConnectDataBase from "@/utils/connectDataBase";
-import ParsStyleUser from "@/utils/model";
+import {ParsStyleUser} from "@/utils/model";
 import Session from "@/utils/session";
 import { NextResponse } from "next/server";
  

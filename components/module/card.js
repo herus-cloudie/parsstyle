@@ -35,8 +35,8 @@ const Card = ({title , price , category , seller , colors , img , id  , discount
                 <div className="flex justify-between max-h-10 items-center">
                     <div className='card-color-group flex justify-between w-2/5 flex-wrap gap-2'>
                     {
-                        colors.map(color => (
-                            <div style={{background : color}} className='card-color'></div>
+                        colors.map((color , index) => (
+                            <div key={index} style={{background : color}} className='card-color'></div>
                         ))
                     }
                     </div>

@@ -64,25 +64,6 @@ export default function ComboboxFilterLow() {
           <CommandInput placeholder="Search framework..." />
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
-            {frameworks.map((framework) => (
-              <h2>ggg</h2>
-              // <CommandItem
-              //   key={framework.value}
-              //   value={framework.value}
-              //   onSelect={(currentValue) => {
-              //     setValue(currentValue === value ? "" : currentValue)
-              //     setOpen(false)
-              //   }}
-              // >
-              //   <Check
-              //     className={cn(
-              //       "mr-2 h-4 w-4",
-              //       value === framework.value ? "opacity-100" : "opacity-0"
-              //     )}
-              //   />
-              //   {framework.label}
-              // </CommandItem>
-            ))}
           </CommandGroup>
         </Command>
       </PopoverContent>

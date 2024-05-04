@@ -80,7 +80,7 @@ export function NavigationFilter() {
 
     {
       staticData.map(({title , option}) => (
-        <div style={{zIndex : '1035'}} className="flex flex-col justify-center">
+        <div key={title} style={{zIndex : '1035'}} className="flex flex-col justify-center">
             <div className="text-sm mb-2 text-zinc-800">
               {title}
             </div>
@@ -92,7 +92,7 @@ export function NavigationFilter() {
                 <SelectContent>
                     <SelectGroup>
                         <SelectLabel>{title}</SelectLabel>
-                        {option.map(option => <SelectItem value={option.value}>{option.context}</SelectItem>)}
+                        {option.map(option => <SelectItem key={option} value={option.value}>{option.context}</SelectItem>)}
                     </SelectGroup>
                 </SelectContent>
             </Select>  

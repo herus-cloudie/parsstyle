@@ -11,12 +11,9 @@ import {
 } from "@/components/ui/select"
 import { scoreData } from "@/constant/data"
 
-export function SelectScore() {
+export function SelectScore({setCommentData , commentData}) {
 
-  const changeHandler = (data) => {
-    console.log(data)
-  }
-
+  const changeHandler = (data) => setCommentData({...commentData , 'score' : data})
 
   return (
     <div className="flex flex-col justify-center">

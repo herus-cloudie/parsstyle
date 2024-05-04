@@ -1,8 +1,6 @@
 import {Schema , model , models} from 'mongoose'
 
-
-
-let ParsStyleSchema = new Schema({
+const ParsStyleSchema = new Schema({
     Email : {
         type : String,
         require : true
@@ -15,7 +13,35 @@ let ParsStyleSchema = new Schema({
     
 } , {timestamps : true}
 )
-
 let ParsStyleUser = models.ParsStyleUser || model("ParsStyleUser" , ParsStyleSchema)
 
-export default ParsStyleUser;
+export {ParsStyleUser};
+
+const ParsStyleCommentSchema = new Schema({
+    text : {
+        type : String,
+        require : true
+    },
+    score : {
+        type : String,
+        require : true
+    },
+    name : {
+        type : String,
+        require : true
+    },
+    id : {
+        type : String,
+        require : true
+    }, 
+    recommendation : {
+        type : Boolean,
+        require : true
+    },
+    seller : {
+        type : String,
+        require : true
+    }, 
+} ,  {timestamps : true})
+const ParsStyleComment = models.ParsStyleComment || model("ParsStyleComment" , ParsStyleCommentSchema)
+export {ParsStyleComment}

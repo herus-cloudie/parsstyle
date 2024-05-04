@@ -245,6 +245,12 @@ body{
   font-family: bold-vazir;
   font-size: 30px;
 }
+@media (max-width : 420px) {
+  .paddingUl {
+    padding-right: 15px;
+    padding-top: 30px;
+}
+}
 .baner-card-a{
     display: flex;
     flex-direction: column;

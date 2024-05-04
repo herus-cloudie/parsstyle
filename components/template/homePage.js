@@ -23,7 +23,7 @@ const HomePage = ({data}) => {
             </div>
             <div className="md:w-2/5 w-5/5 text-center mb-10">
                 <h3 style={{lineHeight: '50px'}} className="md:text-3xl text-2xl  mb-16 md:mb-0 text-center">مهم نیست بودجت چقدره. اینجا با هر قیمتی یک گزینه داری!</h3>
-                <button  className="enter md:mt-8 " style={{width : '200px' , borderRadius : '30px'}}>مشاهده تخفیف ها</button>
+                <a href="/dress?&off=yes"><button  className="enter md:mt-8 " style={{width : '200px' , borderRadius : '30px'}}>مشاهده تخفیف ها</button></a>
             </div>
             </div>
             <div className="whyus w-full flex md:flex-row  flex-col items-center justify-around pt-8">

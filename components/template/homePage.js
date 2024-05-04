@@ -11,7 +11,7 @@ const HomePage = ({data}) => {
             <img alt="hero image" style={{width: '100%'}} src={'/picture/hero-image.jpg'}/>
         </div>
         <div className="w-full picture-side">
-            <h2 className="picture-side-text ">
+            <h2 className="picture-side-text mr-5">
             دسته بندی
             </h2>
             <Category />

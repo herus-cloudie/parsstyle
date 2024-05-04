@@ -1,5 +1,5 @@
 import ConnectDataBase from "@/utils/connectDataBase";
-import ParsStyleUser from "@/utils/model";
+import {ParsStyleUser} from "@/utils/model";
 import { compare } from "bcryptjs";
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
@@ -10,7 +10,6 @@ export const authOptions = {
       Credentials({
         async authorize(state , req){
           let {email , password} = state;
-          
           try {
               await ConnectDataBase()
           } catch (err) {

@@ -491,6 +491,9 @@ body{
     top: -35px !important;
     width: 250px !important;
 }
+.picture-side{
+  padding: 50px 10px;
+}
 }
 
 .side-bar{
@@ -505,6 +508,12 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+  }
+  .baner-card{
+    width:180px;
+  }
+  .picture-side{
+    padding: 50px 0px;
   }
 
 }
@@ -680,7 +689,7 @@ body{
    .cart-number{
     position: relative;
     right: -2px;
-    top: -320px;
+    top: -285px;
   }
   .done-progress{
     padding: 12px;

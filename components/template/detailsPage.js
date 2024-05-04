@@ -31,7 +31,7 @@ const DetailsPage = ({data , session}) => {
         recommendation : false,
         seller : seller
     })
-    console.log(allComment)
+
     useEffect(() => {
         setLoading(true)
         async function GetComments(){
@@ -42,6 +42,7 @@ const DetailsPage = ({data , session}) => {
         GetComments()
         setLoading(false)
     } , [loading])
+
     function getCommentTime(commentData){
         const now = new Date();
         const created = new Date(commentData);
@@ -93,7 +94,11 @@ const DetailsPage = ({data , session}) => {
         })
         console.log(Data)
     }
-    console.log(allComment , commentData)
+
+    let relatedComments = allComment.filter(item => item.id == id)
+    let averageScore = 0
+    averageScore = Math.round(relatedComments.map(item => +item.score).reduce((accumulator, currentValue) => accumulator + currentValue , 0) / relatedComments.length)
+    console.log(averageScore)
   return (
     <div>
         <div className='lg:mx-20 lg:mt-32 mb-20 sm:mt-20 pb-10 flex flex-col lg:flex-row items-center justify-between lg:items-start border-b border-zinc-500'>
@@ -104,8 +109,8 @@ const DetailsPage = ({data , session}) => {
             <div className='lg:w-2/5 w-4/5 mt-custom '>
                 <div className='h-10 flex justify-between pr-3 items-center'>
                     <div style={{width : '150px'}} className='flex justify-between'>
-                        <span style={{width : '50px'}} className='px-3 flex items-baseline'><img alt='star icon' className='star-icon' src='/logo/star.png'/><span className='text-icon'>{allComment.map(item => item.id == id).reduce((accumulator, currentValue) => accumulator + currentValue , 0)}</span></span>
-                        <span style={{width : '50px'}} className='px-3 flex items-baseline'><img alt='comment icon' className='comment-icon' src='/logo/comment.png'/><span className='text-icon'>{allComment.map(item => item.id == id).length}</span></span>
+                        <span style={{width : '50px'}} className='px-3 flex items-baseline'><img alt='star icon' className='star-icon' src='/logo/star.png'/><span className='text-icon  text-xl'>{averageScore ? sp(averageScore) : 5}</span></span>
+                        <span style={{width : '50px'}} className='px-3 flex items-baseline'><img alt='comment icon' className='comment-icon' src='/logo/comment.png'/><span className='text-icon text-xl'>{sp(relatedComments.length)}</span></span>
                     </div>
                     <ShareBtn />
                 </div>
@@ -163,32 +168,36 @@ const DetailsPage = ({data , session}) => {
             ? <div className='lg:mx-20 lg:mt-10 mb-10 sm:mt-5'>
             <div className='border-b-4 border-black w-64 pb-2 mr-20 text-start text-3xl' style={{color : '#333'}}> امتیاز و نظرات کاربران</div>
             <div className='flex lg:flex-row flex-col sm:px-10 px-4 justify-between'>
-               <div className='lg:w-1/4 w-full  h-52 shadow-md text-[#333] shadow-[#a2a2a2] rounded-lg ml-5 mt-10'>
+               <div className='lg:w-1/4 w-full  h-52 shadow-md text-[#333] shadow-[#a2a2a2] rounded-lg ml-5 mt-8'>
                    <div className='text-center p-3 flex flex-col'>
                        <div>
-                           <span className='text-[26px] text-black'> ۳.۸ </span><span>از ۵</span>
+                           <span className='text-[26px] text-black'>{averageScore ? sp(averageScore) : 5}</span><span>از ۵</span>
                        </div>
                        <span className='mt-3'>از مجموع ۲۰۷ امتیاز کاربران </span>
                        <div className='mt-12' onClick={() => setCommentStatus('adding')}><Button>شما هم نظرتان را بگویید!</Button></div>
                    </div>
                </div>
+            <div className='flex flex-col lg:w-3/4 w-full mt-4'>
                {
-                allComment.map(item => (
+                relatedComments.map(item => (
                     
-               <div className='lg:w-3/4 w-full'>
-                    <div className='p-5 my-8 shadow-md flex flex-col justify-between lg:mx-0 md:min-h-32 min-h-44'>
+               <div>
+                    <div className='p-5 my-4 border rounded shadow-md flex flex-col justify-between lg:mx-0 md:min-h-32 min-h-44'>
                         <div className='flex flex-col'>
                             <div className='flex gap-5 items-center sm:mt-0'>
-                                <span className='px-3 py-1 bg-green-800 text-white rounded-lg'><span className='relative top-[2px]'>{item.score}</span></span>
+                                <span className={`px-3 py-1 ${item.score == 1 ? 'bg-red-800' : item.score == 2 ? 'bg-red-500' : item.score == 3 ? 'bg-gray-600' : item.score == 4 ? 'bg-green-600' : item.score == 5 ? 'bg-green-800' : null} text-white rounded-lg`}><span className='relative top-[2px]'>{item.score}</span></span>
                                 <span className='text-sm text-[#333]'>{item.name}</span>
                                 <span className='text-sm text-[#333]'>{getCommentTime(item.createdAt)} پیش</span>
                             </div>
                             <div className='flex justify-between items-center py-5 border-b-2 border-dashed'>
+                                {
+                                    item.recommendation ? 
                                     <div className='text-green-800 text-xs sm:text-sm sm:mt-0'>
                                         خرید این محصول را توصیه میکنم 
-                                    </div>
-                                    <span className='text-left text-[#333] sm:text-xs'style={{fontSize : '12px'}}>فروشنده : پارس استایل</span>
-                                </div>
+                                    </div> : <div></div>
+                                }
+                                <span className='text-left text-[#333] sm:text-xs'style={{fontSize : '12px'}}>فروشنده : {item.seller == 'parsstyle' ? 'پارس استایل' : item.seller == 'calzino' ? 'کالزینو': item.seller == 'lebasina' ? 'لباسینا' : null}</span>
+                            </div>
                         </div>
                         <div className='flex justify-between sm:items-center flex-col-reverse sm:flex-row h-4/5 -mt-3'>
                             <span style={{fontSize : '14px' , lineHeight : '22px'}} className='mt-5 relative top-2'>{item.text}</span>
@@ -197,6 +206,7 @@ const DetailsPage = ({data , session}) => {
                  </div>
                 ))
                }
+            </div>
             </div>
             </div>
             : <div className='p-10'>

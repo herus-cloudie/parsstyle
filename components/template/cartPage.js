@@ -114,8 +114,8 @@ const CartPage = () => {
               <p className='mt-2' style={{color : '#c2c2c2'}}>اطلاعات پرداخت</p>
             </div>
           </div>
-          <div className='md:mx-10 my-10 lg:m-20 mx-5 '>
-          <h3 className='mr-8 my-10 lg:mt-0 text-3xl text-zinc-7h00'>سبد خرید</h3>
+          <div className='md:mx-10 my-10 lg:m-20 mr-5 '>
+          <h3 className='border-b-4 border-black w-32 pb-2 mr-10 mb-20 text-start text-3xl' style={{color : '#333'}}>سبد خرید</h3>
             {
               state.map((item , index) => {
                 let {price , id , discount , title , seller , size , img} = item;
@@ -127,7 +127,7 @@ const CartPage = () => {
                       <Link href={`/dress/${id}`}  className='flex sm:justify-between -pt-7  justify-between pb-4 sm:pb-0 sm:flex-row-reverse flex-col-reverse lg:w-3/4 w-full md:w-4/5 h-full lg:border-none border-dotted border-t-2 border-zinc-300'>
                         <div className='flex justify-around flex-col -mt-14'>
                           <span className='cart-number text-2xl'>{sp(index + 1)}</span>
-                          <div className='flex items-baseline justify-between sm:block'>
+                          <div className='flex flex-col items-center justify-between sm:block'>
                             <div className='flex items-center  py-2 sm:pb-0 text-zinc-500'>
                               قیمت : <div className=' mr-1'> {sp(price)}</div> <span className='text-xs mr-1'>تومان</span>  
                             </div>

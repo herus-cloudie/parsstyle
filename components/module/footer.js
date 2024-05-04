@@ -1,3 +1,4 @@
+import { e2p, p2e, sp } from "@/utils/changeFormat"
 
 
 const Footer = () => {
@@ -34,7 +35,7 @@ const Footer = () => {
             </ul>
 
             <div>
-            <div className="m-3">تلفن پشتیبانی : <span className="pt-1 pr-2">09394142756</span></div>
+            <div className="m-3">تلفن پشتیبانی : <span className="pt-1 pr-2">{e2p('756 4142 0939')}</span></div>
             <div className="flex justify-between m-14"> 
                 <div>
                 <img alt="instagram icon" className="cursor-pointer" src="/logo/instagram.svg" width={30} />

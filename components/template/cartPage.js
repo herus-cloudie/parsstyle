@@ -40,7 +40,7 @@ const CartPage = () => {
           <div className='flex justify-center sm:px-12 mt-32'>
             <div className='flex flex-col text-center'>
               <div className='done-progress mx-5'  style={{borderColor : '#b78f1694'}}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="38px" height="46px" viewBox="0 0 38 46" version="1.1">
+                <svg className='relative -top-2 sm:top-0' xmlns="http://www.w3.org/2000/svg" width="38px" height="46px" viewBox="0 0 38 46" version="1.1">
                   <title>Basket Icon</title>
                   <desc>Created with Sketch.</desc>
                   <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -65,7 +65,7 @@ const CartPage = () => {
             <span className='span-done-progress' style={{backgroundColor : '#b78f1694'}}/>
             <div className='flex flex-col text-center'>
               <div className='done-progress mx-10'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="46px" viewBox="0 0 35 46" version="1.1">
+                <svg className='relative -top-2 sm:top-0' xmlns="http://www.w3.org/2000/svg" width="35px" height="46px" viewBox="0 0 35 46" version="1.1">
                   <title>Shipping Info</title>
                   <desc>Created with Sketch.</desc>
                   <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -87,7 +87,7 @@ const CartPage = () => {
             <span className='span-done-progress'/>
             <div className='flex flex-col text-center'>
               <div className='done-progress mx-5'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="39px" height="46px" viewBox="0 0 39 46" version="1.1">
+                <svg className='relative -top-2 sm:top-0' xmlns="http://www.w3.org/2000/svg" width="39px" height="46px" viewBox="0 0 39 46" version="1.1">
                   <title>Payment Info</title>
                   <desc>Created with Sketch.</desc>
                   <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -114,7 +114,7 @@ const CartPage = () => {
               <p className='mt-2' style={{color : '#c2c2c2'}}>اطلاعات پرداخت</p>
             </div>
           </div>
-          <div className='md:mx-10 my-10 lg:m-20 mr-5 '>
+          <div className='md:mx-10 my-10 lg:m-20 '>
           <h3 className='border-b-4 border-black w-32 pb-2 mr-10 mb-20 text-start text-3xl' style={{color : '#333'}}>سبد خرید</h3>
             {
               state.map((item , index) => {

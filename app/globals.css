@@ -691,7 +691,7 @@ body{
 }
 @media (max-width : 640px) {
   .cart-card{
-    height: 450px;
+    height: 475px;
     width: 300px;
   } 
    .cart-number{

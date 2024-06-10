@@ -2,7 +2,7 @@
 import Session from '@/utils/session'
 // import Sidebar from './sidebar'
 import SheetSearch from './sheetSearch'
-import SheetSide, { SheetSidebar } from './sheetSidebar'
+import SheetSide from './sheetSidebar'
 
 const Header = async () => {
   let session = await Session()
@@ -10,12 +10,11 @@ const Header = async () => {
   return (
     <header>
         <a href='/' className="flex items-center justify-center">
-            <img alt='main logo parsstyle' className="fixed animate-pulse cursor-pointer left-logo-responsive" style={{width : '350px', zIndex : '1031' , top : "-60px"}} src="/logo/logopars-removebg-preview.png"/>
+            <img alt='main logo parsstyle' className="fixed animate-pulse cursor-pointer left-logo-responsive" style={{width : '250px', zIndex : '1031' , top : "14px"}} src="/logo/parsstyle.png"/>
         </a>
         <div className="flex header">
           
         <SheetSide session={session}/>
-            {/* <Sidebar session={session}/> */}
             <div className="flex gap-6 ml-4 hidden md:flex">
               <div className="navigation-card">
                 {

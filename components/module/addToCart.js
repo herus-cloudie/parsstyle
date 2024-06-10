@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 
-const AddToCart = ({data , session , additionalData}) => {
+const AddToCart = ({defaultData , data , session , additionalData}) => {
     const router = useRouter()
     const [state, setState] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -35,11 +35,12 @@ const AddToCart = ({data , session , additionalData}) => {
         setLoading(true)
         let progress = await fetch('/api/cart' , {
             method : 'POST',
-            body : JSON.stringify({data , additionalData}),
+            body : JSON.stringify({data , additionalData : additionalData.size && additionalData.color ? additionalData : defaultData}),
             headers : {"Content-Type": "application/json"}
         })
         setLoading(false)
         let Data = await progress.json();
+        console.log(Data)
         if(Data.message != 'added'){
            setState(false)  
            toast({
@@ -54,7 +55,6 @@ const AddToCart = ({data , session , additionalData}) => {
             action: <ToastAction altText="Try again"><Link href={'/cart'}>برو به سبد</Link></ToastAction>,
           })
         } 
-        console.log(Data)
     }
 
   return (

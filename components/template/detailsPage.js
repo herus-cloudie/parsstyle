@@ -56,6 +56,7 @@ const DetailsPage = ({data , session}) => {
         async function GetComments(){
             let getComment = await fetch('/api/comment')
             let {comments} = await getComment.json()
+            console.log(comments , comments.length)
             setAllComment(comments)
         } 
         GetComments()
@@ -120,13 +121,12 @@ const DetailsPage = ({data , session}) => {
          setAdditionalData({...additionalData , color : color})
         router.push(pathname + '?' + createQueryString('color', color), {scroll : false})
     }
-    console.log(additionalData)
 
     let priceWithDiscount = price  - (price  / 100 * discount);
     let relatedComments = allComment.filter(item => item.id == id)
     let averageScore = 0
     averageScore = Math.round(relatedComments.map(item => +item.score).reduce((accumulator, currentValue) => accumulator + currentValue , 0) / relatedComments.length)
-    console.log(data.seller == 'tavana')
+
   return (
     <div>
         <div className='lg:mx-20 lg:mt-32 mb-20 sm:mt-20 pb-10 flex flex-col lg:flex-row items-center justify-between lg:items-start border-b border-zinc-500'>
@@ -195,7 +195,7 @@ const DetailsPage = ({data , session}) => {
                         </div>
                     </div>
                 </div>
-                <AddToCart session={session} data={data} additionalData={additionalData}/>
+                <AddToCart defaultData={{size : size[0] , color : color[0]}} session={session} data={data} additionalData={additionalData}/>
             </div>
         </div>
         {
@@ -209,7 +209,7 @@ const DetailsPage = ({data , session}) => {
                        <div>
                            <span className='text-[26px] text-black'>{averageScore ? sp(averageScore) : 5}</span><span>از ۵</span>
                        </div>
-                       <span className='mt-3'>از مجموع {allComment.length} امتیاز کاربران </span>
+                       <span className='mt-3'>از مجموع {relatedComments.length} نظر کاربران </span>
                        {
                         !session ? <div className='mt-12' onClick={() => router.push('/sign')}><Button>برای ثبت نظر وارد حساب شوید</Button></div>
                         : <div className='mt-12' onClick={() => setCommentStatus('adding')}><Button>شما هم نظرتان را بگویید!</Button></div>

@@ -32,7 +32,6 @@ export function NavigationFilter() {
   const sex = searchParams.get('sex');
 
   const changeHandler = (data , title) => {
-    console.log({title , data})
     if (title == 'دسته بندی' && data != 'allCategory') router.push(`${pathname}?${createQueryString('category', data)}`);
     else if (title == 'رنگ' && data != 'allColor') router.push(`${pathname}?${createQueryString('color', data)}`);
     else if (title == 'فروشنده' && data != 'allSeller') router.push(`${pathname}?${createQueryString('seller', data)}`);

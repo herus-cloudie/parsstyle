@@ -1,11 +1,11 @@
-import { e2p, p2e, sp } from "@/utils/changeFormat"
+import { e2p } from "@/utils/changeFormat"
 
 
 const Footer = () => {
   return (
     <footer className="footer pt-0  -mt-3 flex flex-col justify-center">
-        <div className="flex items-center">
-            <img alt="main logo parsstyle" className="w-60" src="/logo/logopars-removebg-preview.png"/>
+        <div className="flex items-center mb-10 mt-16">
+            <img alt="main logo parsstyle" className="w-44 mr-4" src="/logo/parsstyle.png"/>
             <span className="logo-line"></span>
         </div>
         <div>

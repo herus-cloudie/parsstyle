@@ -23,7 +23,6 @@ const CartPage = () => {
   let Discount = []; 
   let allPrice = state.map(item => +item.price)
   const finalPrice = allPrice.reduce((accumulator, currentValue) => accumulator + currentValue , 0);
-  console.log(state.map(item => item))
   return (
     <>
       {
@@ -119,7 +118,7 @@ const CartPage = () => {
           <h3 className='border-b-4 border-black w-32 pb-2 mr-10 mb-20 text-start text-3xl' style={{color : '#333'}}>سبد خرید</h3>
             {
               state.map((item , index) => {
-                let {price , id , discount , title , seller , size , img} = item;
+                let {price , id , discount , title , seller , size , img , color} = item;
                 let priceWithDiscount = price  - (price  / 100 * discount);
                 !isNaN(priceWithDiscount) ? Discount.push(price - priceWithDiscount) : null
                 return(
@@ -145,14 +144,14 @@ const CartPage = () => {
                             {title}
                           </div>
                           <div className='text-zinc-500 text-sm pb-4 sm:pb-0 text-center'>
-                            فروشنده : {seller == 'parsstyle' ? 'پارس استایل' : seller == 'lebasina' ? 'لباسینا' : seller == 'توانا' ? '' : null}
+                            فروشنده : {seller == 'parsstyle' ? 'پارس استایل' : seller == 'lebasina' ? 'لباسینا' : seller == 'tavana' ? 'توانا' : null}
                           </div>
                           <div className='flex justify-around'>
                             <div className='text-zinc-500 text-sm pb-3 sm:pb-0 ml-4'>
-                            {/* سایز : <span className='relative' style={{top : '1px'}}>{size[0]}</span> */}
+                            سایز : <span className='relative' style={{top : '1px'}}>{size}</span>
                             </div>
-                            <div className='text-zinc-500 text-sm pb-3 sm:pb-0  mr-4'>
-                              رنگ : قرمز
+                            <div className='text-zinc-500 text-sm pb-3 sm:pb-0 mr-4 flex'>
+                                 رنگ : <div style={{background : color , width : '1.1rem' , height : '1.1rem' , border : '1px solid #ccb534' , margin : '0 5px'}} className='card-color cursor-pointer'/>
                             </div>
                           </div>
                         </div>

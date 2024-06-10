@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from "react"
-import BanerCard from "./banerCard"
 
 const Category = () => {
     let [active, setActive] = useState('men')
@@ -11,7 +10,7 @@ const Category = () => {
                 <div style={active == 'men' ? { borderBottom: '4px solid #000', fontWeight: '500'} : null} onClick={() => setActive('men')} className="px-6 custom-category">مردانه</div>
                 <div style={active == 'women' ? { borderBottom: '4px solid #000', fontWeight: '500'} : null} onClick={() => setActive('women')} className="px-6 custom-category">زنانه</div>
             </div>
-            <div className="flex justify-around flex-wrap">
+            <div className="flex justify-evenly sm:justify-around flex-wrap">
                 {
                     active == 'men' ?
                     <>
@@ -32,5 +31,18 @@ const Category = () => {
         </div>
     )
 }
-
+const BanerCard = ({image , text}) => {
+    return (
+      <div className='baner-card hover:scale-105'>
+          <div className='baner-card-a'>
+              <div className='brand-card-image mx-5 my-10'>
+                  <img alt={`${text} image`} className='rounded' src={image}/>
+              </div>
+              <p className='baner-card-text'>
+                  {text}
+              </p>
+          </div>
+      </div>
+    )
+  }
 export default Category

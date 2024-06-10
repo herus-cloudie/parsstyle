@@ -280,7 +280,7 @@ body{
 .logo-line{
   flex-grow: 1;
   background-color: #c5c5c5;
-  margin-right: -35px;
+  margin-right: 5px;
   height: 1px;
 }
 .login {
@@ -485,18 +485,21 @@ body{
 .paddingUl a span:hover{
   color: black;
 }
+
 @media (min-width : 768px) {
   .menu-navigation {
     display: none;
   }
 }
+
 @media (max-width : 767px) {
   .left-logo-responsive{
     position: fixed;
-    left: -10px;
-    top: -35px !important;
-    width: 250px !important;
+    left: 20px;
+    top: 20px !important;
+    width: 185px !important;
 }
+
 .picture-side{
   padding: 50px 10px;
 }
@@ -866,6 +869,14 @@ body{
   .profile-section{
     width: 900px;
   }
+}
+.cutspace{
+  width: auto; /* تنظیم عرض به صورت خودکار */
+  height: auto; /* تنظیم ارتفاع به صورت خودکار */
+  max-width: 100%; /* محدود کردن عرض به 100% والد */
+  display: block; /* اطمینان از اینکه تصویر به عنوان بلوک نمایش داده می‌شود */
+  margin: 0 auto; /* مرکز کردن تصویر */
+  padding: 0; /* حذف هرگونه فضای داخلی */
 }
 .profile-card, .purchase-history-card, .address-card, .edit-info-card {
   background-color: #fff;

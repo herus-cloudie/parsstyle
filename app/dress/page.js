@@ -5,7 +5,7 @@ import SheetSearch from '@/components/module/sheetSearch';
 import { Button } from '@/components/ui/button';
 
 const Dress = async ({searchParams}) => {
-    let getData = await fetch('http://localhost:4014/data')
+    let getData = await fetch('https://parsstyle-api.vercel.app/data')
     let data = await getData.json();
 
     function filterData(data, searchParams) {

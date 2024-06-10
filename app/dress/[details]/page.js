@@ -5,7 +5,7 @@ import Session from '@/utils/session';
 const Details = async ({params}) => {
   let session = await Session()
     let {details} = params;
-    let getData = await fetch(`http://localhost:4014/data/${details}`)
+    let getData = await fetch(`https://parsstyle-api.vercel.app/data/${details}`)
     let data = await getData.json();
 
   return <DetailsPage data={data} session={session}/>

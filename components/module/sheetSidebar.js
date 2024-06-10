@@ -1,26 +1,29 @@
 'use client'
+
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
+
 import SheetSearch from "./sheetSearch"
+
 import { usePathname } from "next/navigation"
+
 export default function SheetSide ({session}) {
     let pathname = usePathname()
-  return (
-    <div>
-        <Sheet>
-            <SheetTrigger asChild>
-                <div className="cursor-pointer">
-                    <img alt='open hamburger menu logo' className="mr-6" src="https://d1fufvy4xao6k9.cloudfront.net/images/menu/burger2.svg"/>
-                </div>
-            </SheetTrigger>
-            <SheetContent style={{zIndex : '1032'}} side='right'>
-                    <ul className="paddingUl gap-9 flex flex-col">
+    return (
+        <div>
+            <Sheet>
+                <SheetTrigger asChild>
+                    <div className="cursor-pointer">
+                        <img alt='open hamburger menu logo' className="mr-6" src="https://d1fufvy4xao6k9.cloudfront.net/images/menu/burger2.svg"/>
+                    </div>
+                </SheetTrigger>
+                <SheetContent style={{zIndex : '1032'}} side='right'>
+                    <ul className="paddingUl gap-9 flex flex-col mt-5">
                         <div className="navigation-card menu-navigation">
-                        {
-                        session ? 
+                        {session ? 
                         <>
                             <a href='/cart'><img className="tab" src="/logo/cart.svg" /></a>
                             <a style={{width : '60px'}} className="tab" href="/profile"><img src="/logo/user.png"/></a>
@@ -64,33 +67,39 @@ export default function SheetSide ({session}) {
                     {
                         pathname != '/' ? <a href='/' style={{fontFamily : 'bold-vazir'}}>صفحه اصلی</a> : null
                     }
-                        <a href='/dress'>
-                        تیشرت
+                        <a href='/dress?sex=women'>
+                        زنانه
                         </a>
-                        <a href='/dress'>
-                        پیراهن
+                        <a href='/dress?sex=men'>
+                        مردانه
                         </a>
-                        <a href='/dress'>
+                        <a href='/dress?category=coat'>
                         کت و شلوار
                         </a>
-                        <a href='/dress'>
+                        <a href='/dress?category=shirt'>
+                        تیشرت و پیراهن
+                        </a>
+                        <a href='/dress?category=shoes'>
+                        کفش
+                        </a>
+                        <a href='/dress?category=pants'>
                         شلوار و شلوارک
                         </a>
-                        <a href='/dress'>
-                        کلاه و جوراب
+                        <a href='/dress?category=winter'>
+                        زمستانی
                         </a>
-                        <a href='/dress'>
-                        هودی و کاپشن
+                        <a href='/dress?category=wedding'>
+                        مجلسی زنانه
                         </a>
-                        <a href='/dress'>
-                        ساعت و گردنبند
+                        <a href='/dress?category=sport'>
+                        ورزشی
                         </a>
                         
                     </ul>
-            </SheetContent>
-        </Sheet>
-    </div>
-  )
+                </SheetContent>
+            </Sheet>
+        </div>
+    )
 }
 
 

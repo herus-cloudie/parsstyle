@@ -45,7 +45,7 @@ export default function SheetSearch({ children }) {
         <SheetFooter>
             <div className="block mx-auto mt-10 w-2/5">
             <SheetClose asChild>
-              <div onClick={() =>router.push('dress' + '?' + createQueryString('search', searchValue))}><Button className="block w-full" type="submit">جستجو</Button></div>  
+              <div onClick={() =>router.push('/dress' + '?' + createQueryString('search', searchValue))}><Button className="block w-full" type="submit">جستجو</Button></div>  
             </SheetClose>
             </div>
         </SheetFooter>

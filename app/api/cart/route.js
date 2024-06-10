@@ -1,5 +1,4 @@
 
-
 import ConnectDataBase from "@/utils/connectDataBase";
 import {ParsStyleUser} from "@/utils/model";
 import Session from "@/utils/session";
@@ -9,7 +8,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
     let session = await Session();
-    let data = await req.json()
+    let {data , additionalData} = await req.json()
 
     if(!session) return NextResponse.json({status : 'failed' , message : 'please log in'} , {status : 403})
     try {
@@ -21,17 +20,15 @@ export async function POST(req) {
     let user = await ParsStyleUser.findOne({Email : session?.user.email}) 
     let existProductInCart = user.Cart.find(item => item.id == data.id)
     if(!existProductInCart){
-      user.Cart.push(data) 
+      user.Cart.push({...data , ...additionalData}) 
       user.save();
-      return NextResponse.json({status : 'success' , message : 'added'} , {status : 200})
+      return NextResponse.json({status : 'success' , message : 'deleted'} , {status : 200})
     } 
     else{
-        user.Cart.pop(data)
+        user.Cart.pop({...data , ...additionalData}) 
         user.save();
-        return NextResponse.json({status : 'success' , message : 'deleted'} , {status : 200})
+        return NextResponse.json({status : 'success' , message : 'added'} , {status : 200})
     } 
-    
-    
 }
  
 export async function PATCH(req) {

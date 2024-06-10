@@ -3,7 +3,6 @@ import Tooltip from "@/components/module/tooltip";
 import OfferCarousel from "../module/offerCarousel";
 
 const HomePage = ({data}) => {
-    console.log(data)
   return (
     <div dir="rtl">
         <main>

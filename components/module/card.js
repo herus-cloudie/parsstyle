@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation"
 
 const Card = ({title , price , category , seller , colors , img , id  , discount}) => {
     let router = useRouter();
-    console.log(title , discount == 'no')
   return (
     <div onClick={() => router.push(`/dress/${id}`)} className='card m-5 overflow-hidden'>
         {
@@ -26,7 +25,9 @@ const Card = ({title , price , category , seller , colors , img , id  , discount
                         <del dir='ltr' className='text-[#a8a8a8] relative top-4'>{sp(price)}</del>
                     </div>
                 }
-                <p className='text'>{category}</p>
+                <p className='text'>{category == 'shoes' ? 'کفش' : category == 'pants' ? 'شلوار و شلوارک' :  category == 'winter' ? 'زمستانی'
+                : category == 'coat' ? 'کت و شلوار' :  category == 'wedding' ? 'مجلسی زنانه'
+                : category == 'sport' ? 'اسپرت' : 'تیشرت و پیراهن' }</p>
             </div>
             <div className='card-color-size flex flex-col'>
                 <div className='card-title'>
@@ -43,7 +44,7 @@ const Card = ({title , price , category , seller , colors , img , id  , discount
                     <div className='card-size-group  flex w-2/5  flex-wrap gap-3' >
                         {
                             seller == 'parsstyle' ? <span className="seller-title">پارس استایل</span> 
-                            : seller == 'calzino' ? <span className="seller-title">کالزینو</span> 
+                            : seller == 'tavana' ? <span className="seller-title">توانا</span> 
                             : seller == 'lebasina' ? <span className="seller-title">لباسینا</span> : null
                         }
                     </div>

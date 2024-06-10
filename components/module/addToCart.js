@@ -6,11 +6,15 @@ import Loaders from "./loaders";
 import { useToast } from "../ui/use-toast";
 import { ToastAction } from "../ui/toast";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
-const AddToCart = ({data}) => {
+const AddToCart = ({data , session , additionalData}) => {
+    const router = useRouter()
     const [state, setState] = useState(false);
     const [loading, setLoading] = useState(true);
     const {toast} = useToast();
+
     useEffect(() => {
          async function IfAddedAlready() {
             setLoading(true)
@@ -31,7 +35,7 @@ const AddToCart = ({data}) => {
         setLoading(true)
         let progress = await fetch('/api/cart' , {
             method : 'POST',
-            body : JSON.stringify(data),
+            body : JSON.stringify({data , additionalData}),
             headers : {"Content-Type": "application/json"}
         })
         setLoading(false)
@@ -50,12 +54,14 @@ const AddToCart = ({data}) => {
             action: <ToastAction altText="Try again"><Link href={'/cart'}>برو به سبد</Link></ToastAction>,
           })
         } 
+        console.log(Data)
     }
 
   return (
-    <div className='details-container '>
+    <div className='details-container'>
         {
-            loading ?
+          !session ? <div className='flex justify-center mt-10' onClick={() => router.push('/sign')}><Button className='w-full'>برای ثبت سفارش وارد حساب شوید</Button></div>
+          : loading ?
              <div className="flex justify-center">
                 <Loaders />
             </div> 

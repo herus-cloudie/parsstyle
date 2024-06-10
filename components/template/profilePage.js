@@ -1,18 +1,35 @@
 'use client'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { signOut } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
-import { useToast } from '../ui/use-toast'
+
 import Loaders from '../module/loaders'
 import { SelectForCity } from '../module/selectForCity'
 
+import { useToast } from '../ui/use-toast'
+
 const ProfilePage = () => {
     let [data , setData]= useState();
+
+    let [address , setAddress] = useState({
+        street : '',
+        unit : '',
+        city : ''
+    });
+
+    let [userInfo , setUserInfo] = useState({
+        userName : '',
+        currentPassword : '',
+        newPassword : ''
+    });
+
     let [loading , setLoading]= useState(true);
+    let [secondLoading , setSecondLoading] = useState(false);
+    let [thirdLoading , setThirdLoading] = useState(false);
     let router = useRouter();
-    const {toast} = useToast()
+    const {toast} = useToast();
 
     useEffect(() => {
         setLoading(true)
@@ -21,13 +38,20 @@ const ProfilePage = () => {
           let data = await jsonData.json()
           setData(data)
         }
+        async function getAddress(){
+          let jsonData = await fetch('api/additionalData')
+          let {address} = await jsonData.json();
+          setAddress(address)
+        }
         getProfileData()
+        getAddress()
         setTimeout(() => {
             setLoading(false)
         }, 500);
     }, [])
-    
+
     const date = new Date(data?.user.createdAt).toLocaleDateString('fa-IR')
+
     const signOutHanlder = async () =>  {
         await signOut()
         router.refresh()
@@ -35,85 +59,142 @@ const ProfilePage = () => {
             variant: "destructive",
             title: "از حسابتان خارج شدید ",
           })
-        
     }
+
+    const saveAddressHandler = async () => {
+        if(address.city == '' || address.street == '' || address.unit == '') toast({title : 'لطفا تمامی موارد آدرس را وارد کنید.' ,  variant: "destructive"})
+        else {
+            setThirdLoading(true)
+            let sendData = await fetch('/api/additionalData' , {
+                method : 'PATCH',
+                body : JSON.stringify(address),
+                headers : {"Content-Type": "application/json"}
+            })
+            let result = await sendData.json();
+            if(result.status == 'success') toast({ variant: "successful",title: "آدرس شما با موفقیت ذخیره شد"})
+            else toast({ variant: "destructive",  title: "مشکلی پیش آمده! دوباره تلاش کنید", })
+            setThirdLoading(false)
+        }
+    }
+
+    const editUserInfo = async () => {
+        if(!userInfo.userName && !userInfo.newPassword) return toast({ variant: "destructive",  title: "لطفا برای تغییر ، حروف جایگزین را وارد کنید", })
+        if(!userInfo.currentPassword) return toast({ variant: "destructive",  title: "لطفا رمز عبور حال حاضر را وارد کنید", })
+        if(userInfo.userName.length != 0 && userInfo.userName.length < 4) return toast({ variant: "destructive",  title: "نام کاربری جایگزین باید حداقل 4 حرف باشد", })
+        if(userInfo.newPassword.length != 0 && userInfo.newPassword.length < 6) return toast({ variant: "destructive",  title: "رمز عبور جایگزین باید حداقل 6 حرف باشد", })
+        else {
+            setSecondLoading(true)
+            let sendData = await fetch('/api/additionalData' , {
+                method : 'POST',
+                body : JSON.stringify(userInfo),
+                headers : {"Content-Type": "application/json"}
+            })
+            let result = await sendData.json()
+              
+            if(result.message == 'you password is incorrect'){
+                toast({ variant: "destructive",  title: "رمز عبور اشتباه است", })
+            }else if(result.message == 'your userName is already registered'){
+                toast({ variant: "destructive",  title: "نام کاربری شما در حال حاضر ثبت شده است", })
+
+            }else if(result.message == 'your user name get change'){ 
+                router.refresh()
+                toast({ variant: "successful",  title: "نام کاربری شما تغییر یافت", description : 'لطفا مجدد وارد حساب بشوید'})
+                await signOut()
+               
+            }else if(result.message == 'your password get change'){
+                toast({ variant: "successful",  title: "رمز عبور تغییر یافت", })
+            } else {
+                router.refresh()
+                toast({ variant: "successful",  title: "نام کاربری و رمز عبور تغییر یافت", description : 'لطفا مجدد وارد حساب بشوید'})
+                await signOut()
+                
+            }
+            setSecondLoading(false)
+         }    
+    }
+
   return (
     <>
-    {
-        loading ? 
-        <div className='h-screen items-center justify-center flex'>
-            <Loaders/>
-        </div>
-        : 
-        <div className='mt-20'>
-            <div>
-                <h3 className='profile'>پروفایل</h3>
-                <div className='flex justify-around items-center'>
-                    <div>نام حساب کاربری : {data?.user.Email}</div>
-                    <div>تاریخ عضویت : {date}</div>
-                    <div onClick={signOutHanlder}><Button variant="destructive">خروج از حساب</Button></div>
-                </div>
-                <div className='flex justify-center items-center mt-16'>
-                    <div className='ml-10'>سطح کاربری : عادی - مشتری</div>
-                    <Button>ارتقای سطح کاربری</Button>
-                </div>
-                <hr className='mt-10'/>
-            </div>
-            <div  className='pt-10' style={{backgroundColor : '#F5F4EF'}}>
-                <h3 className='profile'>سوابق خرید</h3>
-                <div className='flex justify-around notyet'>
-                    شما هنوز خریدی انجام نداده اید!
-                </div>
-                <hr className='mt-10'/>
-            </div>
-            <div className='pt-10'>
-                <h3 className='profile'>افزودن اطلاعات آدرس</h3>
-                <div className='flex flex-col mx-10'>
-                    <div className='flex justify-around items-end'>
-                        <SelectForCity />
-                        <div className="inputBox">
-                            <input dir="rtl" name=""/>
-                            <span>خیابان و کوچه</span>
-                        </div>
-                        <div className="inputBox">
-                            <input dir="rtl" name=""/>
-                            <span>پلاک و واحد</span>
-                        </div>
+        {loading ? <div className='h-screen items-center justify-center flex'><Loaders/></div>
+        : <div className='mt-20 flex flex-col items-center justify-center'>
+            <div className="profile-section">
+                <Card className="profile-card flex flex-col">
+                    <h2 className='profile'>اطلاعات پروفایل</h2>
+                    <div className='flex flex-col gap-3 sm:gap-0 border-t sm:flex-row sm:justify-between mt-2 pt-4'>
+                        <p>نام کاربری: <strong>{data?.user.Email}</strong></p>
+                        <p>تاریخ عضویت: <strong>{date}</strong></p>
                     </div>
-                    <div className='mt-20 mx-10 flex items-center justify-center'>
-                    <Button>ذخیره آدرس</Button>
-                    </div>
-                </div>
-                <hr className='mt-10'/>
+                </Card>
             </div>
-            <div className='py-10' style={{backgroundColor : '#F5F4EF'}}>
-                <h3 className='profile'>ویرایش اطلاعات</h3>
-                <div className='flex flex-col mx-10'>
-                    <div className='flex justify-around'>
-                        <div className="inputBox">
-                            <input placeholder={data?.user.Email} dir="ltr" name="password"/>
-                            <span>نام کاربری</span>
-                        </div>
-                        <div className="inputBox">
-                            <input dir="ltr" name="password"/>
-                            <span>رمزعبور جدید</span>
-                        </div>
+
+            <div className="profile-section">
+                <Card className="profile-card flex flex-col">
+                    <h2 className='profile'>سوابق خرید</h2>
+                    <div className='flex sm:justify-center flex-col gap-3 sm:gap-0 border-t sm:flex-row mt-2 pt-4'>
+                        هنوز خریدی انجام نداده اید.
                     </div>
-                    <div className='mt-32 mx-10 flex items-center justify-center'>
-                        <div className='flex justify-between ml-3'>
-                            <div className="inputBox">
-                                <input dir="rtl" name="password" placeholder='رمز عبور فعلی '/>
+                </Card>
+            </div>
+            <div className="profile-section">
+                <Card className="profile-card flex flex-col">
+                    <h2 className='profile'>آدرس</h2>
+                    <div className='flex lg:justify-around items-center flex-col gap-3 lg:gap-0 border-t lg:flex-row mt-2 pt-4'>
+                        <div className='flex flex-col md:flex-row justify-around gap-5 md:gap-10'>
+                            <div className="inputBox bg-white mt-5 ">
+                                <input onChange={(e) => setAddress({...address , street : e.target.value})} dir="rtl" value={address.street}/>
+                                <span>خیابان و کوچه</span>
+                            </div>
+                            <div className="inputBox bg-white mt-5">
+                                <input onChange={(e) => setAddress({...address , unit : e.target.value})} dir="rtl" value={address.unit}/>
+                                <span>پلاک و واحد</span>
                             </div>
                         </div>
-                        <Button>ویرایش</Button>
+                        <SelectForCity value={address.city} address={address} setAddress={setAddress}/>
                     </div>
-                </div>
-                
+                    <div className='mt-12 mx-10 flex items-center justify-center'>
+                    {thirdLoading ? <div className='-mt-1'><Loaders/></div> : <Button onClick={saveAddressHandler}>ذخیره آدرس</Button> }
+                    
+                    </div>
+                </Card>
+            </div>
+            <div className="profile-section">
+                <Card className="profile-card flex flex-col">
+                   <div className='flex justify-between'>
+                    <h2 className='profile'>ویرایش اطلاعات</h2>
+                    <p className='text-red-700 text-sm hidden lg:flex'>در صورت تغییر "نام کاربری" باید مجدد وارد اکانت بشید.</p>
+                   </div>
+                    <div className='flex lg:justify-around items-center flex-col gap-3 lg:gap-0 border-t lg:flex-row mt-2 pt-4'>
+                        <p className='text-red-700 text-sm lg:hidden'>در صورت تغییر "نام کاربری" باید مجدد وارد اکانت بشید.</p>
+                        <div className='flex flex-col md:flex-row justify-around gap-5 md:gap-10'>
+                            <div className="inputBox bg-white mt-5 ">
+                                <input onChange={(e) => setUserInfo({...userInfo , userName : e.target.value})} dir="rtl" name="" placeholder={data?.user.Email}/>
+                                <span>نام کاربری</span>
+                            </div>
+                            <div className="inputBox bg-white mt-5">
+                                <input onChange={(e) => setUserInfo({...userInfo , newPassword : e.target.value})} dir="rtl" name=""/>
+                                <span>رمز عبور جدید</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='mt-12 mx-10 flex items-center justify-center'>
+                        <input className='p-2 rounded-md ml-5 w-32 border border-[#333]' dir="rtl" onChange={(e) => setUserInfo({...userInfo , currentPassword : e.target.value})} placeholder='رمز عبور فعلی'/>
+                        {secondLoading ? <div className='mr-3'><Loaders/></div> : <Button onClick={editUserInfo}>ویرایش و دخیره</Button> }
+                    </div>
+                </Card>
+            </div>
+            <div className='profile-section flex justify-center gap-4 border-t-2'>
+                <Button onClick={() => signOutHanlder()} className='bg-red-500 w-52 mt-5 md:mt-16'>خروج از حساب</Button>
+                <Button onClick={() => router.push('/')} className='w-52 mt-5 md:mt-16'>بازگشت به صفحه اصلی</Button>
             </div>
         </div>
-    }
+        }
     </>
   )
 }
 
 export default ProfilePage;
+
+
+const Card = ({ children }) => <div style={{backgroundColor : '#F5F4EF'}} className={`carddd`}>{children}</div>
+
+

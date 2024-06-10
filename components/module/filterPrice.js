@@ -52,13 +52,13 @@ const FilterPrice = () => {
   }
   return (
       <div className="mt-8">
-        <span className=''>قیمت<span className='text-zinc-700 text-sm'> (تومان)</span></span>
+        <span className=''>قیمت<span className='text-zinc-700 text-sm'>(تومان)</span></span>
         <div className="flex flex-col justify-center items-center mt-3">
             <input onFocus={() => {
               setState({...state , low : ''})
               router.push(pathname + '?' + createQueryString('low', ''))}
               } value={state.low} name='low' onChange={changeHandler} id="lowValue" onf className='input-price' placeholder='از'/>
-            <input  onFocus={() => {
+            <input onFocus={() => {
               setState({...state , high : ''})
               router.push(pathname + '?' + createQueryString('high', ''))}
               } value={state.high} name='high' onChange={changeHandler} id="lowHigh" className='input-price mt-3'  placeholder='تا'/>

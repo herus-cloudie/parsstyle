@@ -11,25 +11,21 @@ import {
 } from "@/components/ui/select"
 import { cityData } from "@/constant/data"
 
-export function SelectForCity() {
+export function SelectForCity({address , setAddress , value}) {
 
-  const changeHandler = (data) => {
-    console.log(data)
-  }
-
-
+  const changeHandler = (data) => setAddress({...address , city : data})
+  
   return (
     <div className="flex flex-col justify-center">
         <div className="text-sm mb-2 text-zinc-800">
         شهر
         </div>
-        <Select key={'item'} onValueChange={changeHandler}>
+        <Select value={value} onValueChange={changeHandler}>
             <SelectTrigger className="w-[180px]">
-                <SelectValue/>
+                <SelectValue placeholder={value}/>
             </SelectTrigger>
             <SelectContent>
                 <SelectGroup>
-                    <SelectLabel></SelectLabel>
                     {cityData.map(item => <SelectItem value={item}>{item}</SelectItem>) }
                 </SelectGroup>
             </SelectContent>

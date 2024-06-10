@@ -25,7 +25,7 @@ export default function OfferCarousel({data}) {
         >
         <CarouselContent >
         
-            {sortedArray.map((item , index) => (
+            {sortedArray.slice(0, 7).map((item , index) => (
                 <>
                     <CarouselItem onClick={() => router.push(`/dress/${item.id}`)} key={index} className="md:basis-1/2 lg:basis-1/3 cursor-pointer">
                         <div className="">

@@ -31,6 +31,7 @@ const SheetFilter = () => {
   useEffect(() => {
     if(searchParams.get('off')) setState(searchParams.get('off'))
   }, [])
+
   const setQuery = () => {
     if(state == 'yes') setState('no')
     else setState('yes')
@@ -38,6 +39,7 @@ const SheetFilter = () => {
     if(state == 'no')router.push(pathname + '?' + createQueryString('off' , 'yes')) 
     else router.push(pathname + '?' + createQueryString('off' , 'no'))
   }
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -54,7 +56,7 @@ const SheetFilter = () => {
                 <NavigationFilter/> 
             </div>
             <div className="flex flex-row-reverse gap-2 justify-center items-center mb-10 mt-5">
-              <Checkbox checked={searchParams.get('off') == 'yes' ? true : false} id="terms1"  onClick={setQuery}/>
+              <Checkbox checked={searchParams.get('off') == 'yes' ? true : false} id="terms1" onClick={setQuery}/>
               <div className="grid gap-1.5 leading-none">
                   <label
                   htmlFor="terms1"

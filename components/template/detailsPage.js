@@ -2,24 +2,38 @@
 
 import AddToCart from '@/components/module/addToCart';
 import ShareBtn from '@/components/module/shareBtn';
+import CarouselDetails from '@/components/module/carouselDetails';
+
 import { Button } from '@/components/ui/button';
 import { Textarea } from "@/components/ui/textarea"
-import { sp } from '@/utils/changeFormat';
-import { useEffect, useState } from 'react';
-import { SelectScore } from '../module/selectScore';
 import { Checkbox } from "@/components/ui/checkbox"
-import CarouselDetails from '@/components/module/carouselDetails';
-import Loaders from '../module/loaders';
 import { useToast } from '../ui/use-toast';
+
+import { SelectScore } from '../module/selectScore';
+import Loaders from '../module/loaders';
+
+import { sp } from '@/utils/changeFormat';
+
+import { useCallback, useEffect, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 
 const DetailsPage = ({data , session}) => {
     const {img , color , title , category , price , size , id , discount , seller} = data;
 
     const {toast} = useToast();
-    
-    let priceWithDiscount = price  - (price  / 100 * discount);
+    const router = useRouter();
+    const pathname = usePathname();
+    let searchParams = useSearchParams();
 
+    const createQueryString = useCallback((name, value) => {
+        const params = new URLSearchParams(searchParams)
+        params.set(name, value)
+    
+        return params.toString()
+        },
+        [searchParams]
+    )
     const [loading, setLoading] = useState(false)
 
     const [allComment, setAllComment] = useState([])
@@ -30,6 +44,11 @@ const DetailsPage = ({data , session}) => {
         text : '',
         recommendation : false,
         seller : seller
+    })
+
+    const [additionalData, setAdditionalData] = useState({
+        color : searchParams.get('color'),
+        size : searchParams.get('size')
     })
 
     useEffect(() => {
@@ -92,18 +111,26 @@ const DetailsPage = ({data , session}) => {
             text : '',
             recommendation : false,
         })
-        console.log(Data)
     }
+    const changeHandlerSize = (e , size) => {
+        setAdditionalData({...additionalData , size : size})
+        router.push(pathname + '?' + createQueryString('size', size), {scroll : false})
+    }
+    const changeHandlerColor = (e , color) => {
+         setAdditionalData({...additionalData , color : color})
+        router.push(pathname + '?' + createQueryString('color', color), {scroll : false})
+    }
+    console.log(additionalData)
 
+    let priceWithDiscount = price  - (price  / 100 * discount);
     let relatedComments = allComment.filter(item => item.id == id)
     let averageScore = 0
     averageScore = Math.round(relatedComments.map(item => +item.score).reduce((accumulator, currentValue) => accumulator + currentValue , 0) / relatedComments.length)
-    console.log(averageScore)
+    console.log(data.seller == 'tavana')
   return (
     <div>
         <div className='lg:mx-20 lg:mt-32 mb-20 sm:mt-20 pb-10 flex flex-col lg:flex-row items-center justify-between lg:items-start border-b border-zinc-500'>
             <div className='lg:w-3/5 w-4/5 flex justify-center mt-16 sm:mt-0 mb-10 lg:mb-0 lg:-mr-10 overflow-hidden relative'>
-
                 <CarouselDetails img={img} id={id} discount={discount}/>
             </div>
             <div className='lg:w-2/5 w-4/5 mt-custom '>
@@ -115,13 +142,15 @@ const DetailsPage = ({data , session}) => {
                     <ShareBtn />
                 </div>
                 <div className='details-container'>
-                    <span className='seller'>فروشنده : پارس استایل</span>
+                    <span className='seller'>فروشنده :  {data.seller == 'parsstyle' ? 'پارس استایل' : data.seller == 'tavana' ? 'توانا': data.seller == 'lebasina' ? 'لباسینا' : null}</span>
                 </div>
                 <div className='details-container'>
                     <span className='title-details'>{title}</span>
                 </div>
                 <div className='details-container flex justify-between'>
-                    <span className='seller'>{category}</span>
+                    <span className='seller'>{category == 'shoes' ? 'کفش' : category == 'pants' ? 'شلوار و شلوارک' :  category == 'winter' ? 'زمستانی'
+                : category == 'coat' ? 'کت و شلوار' :  category == 'wedding' ? 'مجلسی زنانه'
+                : category == 'sport' ? 'اسپرت' : 'تیشرت و پیراهن' }</span>
                     {
                         discount !== 'no' ?
                         <div className='flex items-center gap-3'>
@@ -146,20 +175,27 @@ const DetailsPage = ({data , session}) => {
                         <div className='card-color-group'>
                             {
                                 color.map((color, index) => (
-                                    <div key={index} style={{background : color , width : '1rem' , height : '1rem' , border : '1px solid #ccb534' , margin : '0 5px'}} className='card-color cursor-pointer'></div>
+                                    <div onClick={(e) => changeHandlerColor(e , color)} key={index}
+                                    style={additionalData.color == color? 
+                                    {background : color , width : '1.3rem' , height : '1.3rem' , border : '3px solid white' , margin : '0 5px' , boxShadow : 'black 0px 0px 10px'}
+                                    : {background : color , width : '1.3rem' , height : '1.3rem' , border : '1px solid #ccb534' , margin : '0 5px'}} className='card-color cursor-pointer'></div>
+                                ))
+                            }  
+                        </div>
+                        <div className='card-size-group'>
+                            {
+                                size.map((size, index) => (
+                                    <div onClick={(e) => changeHandlerSize(e , size)} key={index}
+                                    style={additionalData.size == size ? 
+                                    {fontSize : '15px' , margin : '0 10px' , border : '1px solid black', padding: '2px 5px 0' , borderRadius : '50%', boxShadow : 'black 0px 0px 10px' }
+                                    : {fontSize : '13px' , margin : '0 10px'  } } 
+                                    className='card-size cursor-pointer'><span>{size}</span></div>
                                 ))
                             }
                         </div>
-                        <div className='card-size-group'>
-                                {
-                                    size.map((size, index) => (
-                                        <div key={index} style={{fontSize : '13px' , margin : '0 10px'}} className='card-size cursor-pointer'>{size}</div>
-                                    ))
-                                }
-                        </div>
                     </div>
                 </div>
-                <AddToCart data={data}/>
+                <AddToCart session={session} data={data} additionalData={additionalData}/>
             </div>
         </div>
         {
@@ -173,38 +209,43 @@ const DetailsPage = ({data , session}) => {
                        <div>
                            <span className='text-[26px] text-black'>{averageScore ? sp(averageScore) : 5}</span><span>از ۵</span>
                        </div>
-                       <span className='mt-3'>از مجموع ۲۰۷ امتیاز کاربران </span>
-                       <div className='mt-12' onClick={() => setCommentStatus('adding')}><Button>شما هم نظرتان را بگویید!</Button></div>
+                       <span className='mt-3'>از مجموع {allComment.length} امتیاز کاربران </span>
+                       {
+                        !session ? <div className='mt-12' onClick={() => router.push('/sign')}><Button>برای ثبت نظر وارد حساب شوید</Button></div>
+                        : <div className='mt-12' onClick={() => setCommentStatus('adding')}><Button>شما هم نظرتان را بگویید!</Button></div>
+                       }
                    </div>
                </div>
             <div className='flex flex-col lg:w-3/4 w-full mt-4'>
                {
+                relatedComments.length != 0 ?
                 relatedComments.map(item => (
                     
-               <div>
-                    <div className='p-5 my-4 border rounded shadow-md flex flex-col justify-between lg:mx-0 md:min-h-32 min-h-44'>
-                        <div className='flex flex-col'>
-                            <div className='flex gap-5 items-center sm:mt-0'>
-                                <span className={`px-3 py-1 ${item.score == 1 ? 'bg-red-800' : item.score == 2 ? 'bg-red-500' : item.score == 3 ? 'bg-gray-600' : item.score == 4 ? 'bg-green-600' : item.score == 5 ? 'bg-green-800' : null} text-white rounded-lg`}><span className='relative top-[2px]'>{item.score}</span></span>
-                                <span className='text-sm text-[#333]'>{item.name}</span>
-                                <span className='text-sm text-[#333]'>{getCommentTime(item.createdAt)} پیش</span>
-                            </div>
-                            <div className='flex justify-between items-center py-5 border-b-2 border-dashed'>
-                                {
-                                    item.recommendation ? 
-                                    <div className='text-green-800 text-xs sm:text-sm sm:mt-0'>
-                                        خرید این محصول را توصیه میکنم 
-                                    </div> : <div></div>
-                                }
-                                <span className='text-left text-[#333] sm:text-xs'style={{fontSize : '12px'}}>فروشنده : {item.seller == 'parsstyle' ? 'پارس استایل' : item.seller == 'calzino' ? 'کالزینو': item.seller == 'lebasina' ? 'لباسینا' : null}</span>
-                            </div>
-                        </div>
-                        <div className='flex justify-between sm:items-center flex-col-reverse sm:flex-row h-4/5 -mt-3'>
-                            <span style={{fontSize : '14px' , lineHeight : '22px'}} className='mt-5 relative top-2'>{item.text}</span>
-                        </div>
-                    </div>
-                 </div>
-                ))
+                    <div>
+                         <div className='p-5 my-4 border rounded shadow-md flex flex-col justify-between lg:mx-0 md:min-h-32 min-h-44'>
+                             <div className='flex flex-col'>
+                                 <div className='flex gap-5 items-center sm:mt-0'>
+                                     <span className={`px-3 py-1 ${item.score == 1 ? 'bg-red-800' : item.score == 2 ? 'bg-red-500' : item.score == 3 ? 'bg-gray-600' : item.score == 4 ? 'bg-green-600' : item.score == 5 ? 'bg-green-800' : null} text-white rounded-lg`}><span className='relative top-[2px]'>{item.score}</span></span>
+                                     <span className='text-sm text-[#333]'>{item.name}</span>
+                                     <span className='text-sm text-[#333]'>{getCommentTime(item.createdAt)} پیش</span>
+                                 </div>
+                                 <div className='flex justify-between items-center py-5 border-b-2 border-dashed'>
+                                     {
+                                         item.recommendation ? 
+                                         <div className='text-green-800 text-xs sm:text-sm sm:mt-0'>
+                                             خرید این محصول را توصیه میکنم 
+                                         </div> : <div></div>
+                                     }
+                                     <span className='text-left text-[#333] sm:text-xs'style={{fontSize : '12px'}}>فروشنده : {data.seller == 'parsstyle' ? 'پارس استایل' : data.seller == 'tavana' ? 'توانا': data.seller == 'lebasina' ? 'لباسینا' : null}</span>
+                                 </div>
+                             </div>
+                             <div className='flex justify-between sm:items-center flex-col-reverse sm:flex-row h-4/5 -mt-3'>
+                                 <span style={{fontSize : '14px' , lineHeight : '22px'}} className='mt-5 relative top-2'>{item.text}</span>
+                             </div>
+                         </div>
+                      </div>
+                     ))
+                     : <span className='text-center text-2xl mt-10 lg:mt-0 text-[#333]'> متاسفانه نظری ثبت نشده است!</span>
                }
             </div>
             </div>
@@ -232,7 +273,7 @@ const DetailsPage = ({data , session}) => {
                 </div>
                 <div className='flex justify-around sm:justify-evenly mt-16'>
                     <div onClick={sendComment}><Button>ثبت نظر</Button></div>
-                    <Button  onClick={() => setCommentStatus('reading')} variant="destructive" >انصراف</Button>
+                    <Button onClick={() => setCommentStatus('reading')} variant="destructive">انصراف</Button>
                 </div>
             </div>
         }

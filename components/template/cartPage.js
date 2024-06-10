@@ -23,6 +23,7 @@ const CartPage = () => {
   let Discount = []; 
   let allPrice = state.map(item => +item.price)
   const finalPrice = allPrice.reduce((accumulator, currentValue) => accumulator + currentValue , 0);
+  console.log(state.map(item => item))
   return (
     <>
       {
@@ -144,11 +145,11 @@ const CartPage = () => {
                             {title}
                           </div>
                           <div className='text-zinc-500 text-sm pb-4 sm:pb-0 text-center'>
-                            فروشنده : {seller == 'parsstyle' ? 'پارس استایل' : seller == 'lebasina' ? 'لباسینا' : seller == 'کالزینو' ? '' : null}
+                            فروشنده : {seller == 'parsstyle' ? 'پارس استایل' : seller == 'lebasina' ? 'لباسینا' : seller == 'توانا' ? '' : null}
                           </div>
                           <div className='flex justify-around'>
                             <div className='text-zinc-500 text-sm pb-3 sm:pb-0 ml-4'>
-                            سایز : <span className='relative' style={{top : '1px'}}>{size[0]}</span>
+                            {/* سایز : <span className='relative' style={{top : '1px'}}>{size[0]}</span> */}
                             </div>
                             <div className='text-zinc-500 text-sm pb-3 sm:pb-0  mr-4'>
                               رنگ : قرمز
@@ -193,8 +194,7 @@ const CartPage = () => {
               </div>
             </div>
           </div>
-        </div>
-        
+        </div>  
       }
     </>
   )

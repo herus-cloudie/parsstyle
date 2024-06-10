@@ -1,12 +1,11 @@
 import Card from '@/components/module/card';
-import FilterSearch from '@/components/module/filterSearch';
 import NoResult from '@/components/module/noResult';
 import SheetFilter from '@/components/module/sheetFilter';
 import SheetSearch from '@/components/module/sheetSearch';
 import { Button } from '@/components/ui/button';
 
 const Dress = async ({searchParams}) => {
-    let getData = await fetch('https://api-parsstyle.vercel.app/data')
+    let getData = await fetch('http://localhost:4014/data')
     let data = await getData.json();
 
     function filterData(data, searchParams) {
@@ -20,8 +19,8 @@ const Dress = async ({searchParams}) => {
             filteredData = filteredData.filter(item => item.color.includes(searchParams.color));
         }
     
-        if (searchParams.size) {
-            filteredData = filteredData.filter(item => item.size.includes(searchParams.size));
+        if (searchParams.category) {
+            filteredData = filteredData.filter(item => item.category.includes(searchParams.category));
         }
     
         if (searchParams.low && searchParams.high) {

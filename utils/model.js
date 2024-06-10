@@ -10,7 +10,20 @@ const ParsStyleSchema = new Schema({
         require : true
     },
     Cart : [],
-    
+    Address : {
+        street : {
+            type : String,
+            default : ''
+        },
+        unit : {
+            type : String,
+            default : ''
+        },
+        city : {
+            type : String,
+            default : ''
+        }
+    },
 } , {timestamps : true}
 )
 let ParsStyleUser = models.ParsStyleUser || model("ParsStyleUser" , ParsStyleSchema)

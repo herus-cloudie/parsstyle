@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   Select,
@@ -8,98 +8,115 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 import { staticData } from "@/constant/data";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 export function NavigationFilter() {
-
   const pathname = usePathname();
-  let searchParams = useSearchParams();
-  let router = useRouter();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const createQueryString = useCallback((name, value) => {
-      const params = new URLSearchParams(searchParams)
-      params.set(name, value)
- 
-      return params.toString()
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+    return params.toString();
+  }, [searchParams]);
+
+  const category = searchParams.get('category');
+  const color = searchParams.get('color');
+  const seller = searchParams.get('seller');
+  const sex = searchParams.get('sex');
+
+  const changeHandler = (data , title) => {
+    console.log({title , data})
+    if (title == 'دسته بندی' && data != 'allCategory') router.push(`${pathname}?${createQueryString('category', data)}`);
+    else if (title == 'رنگ' && data != 'allColor') router.push(`${pathname}?${createQueryString('color', data)}`);
+    else if (title == 'فروشنده' && data != 'allSeller') router.push(`${pathname}?${createQueryString('seller', data)}`);
+    else if (title == 'جنسیت' && data != 'allSex') router.push(`${pathname}?${createQueryString('sex', data)}`);
+    else if (data === 'allCategory') router.push(`${pathname}?${createQueryString('category', '')}`);
+    else if (data === 'allColor') router.push(`${pathname}?${createQueryString('color', '')}`);
+    else if (data === 'allSeller') router.push(`${pathname}?${createQueryString('seller', '')}`);
+    else if (data === 'allSex') router.push(`${pathname}?${createQueryString('sex', '')}`);
+  };
+
+  const dynamicValues = {
+    category: {
+      default: 'همه',
+      shirt: 'تیشرت و پیراهن',
+      coat: 'کت و شلوار',
+      pants: 'شلوار و شلوارک',
+      wedding: 'مجلسی زنانه',
+      shoes: 'کفش',
+      sport: 'ورزشی',
+      winter: 'زمستانی'
     },
-    [searchParams]
-  )
+    color: {
+      default: 'همه',
+      red: 'قرمز',
+      blue: 'آبی',
+      white: 'سفید',
+      black: 'مشکی',
+      gray: 'خاکستری',
+      green: 'سبز',
+      brown: 'قهوه‌‌ای',
+      yellow: 'زرد',
+      orange: 'نارنجی',
+      pink: 'صورتی',
+      purple: 'بنقش'
+    },
+    seller: {
+      default: 'همه',
+      parsstyle: 'پارس استایل',
+      tavana: 'توانا',
+      lebasina: 'لباسینا'
+    },
+    sex: {
+      default: 'همه',
+      men: 'مردانه',
+      women: 'زنانه',
+      child: 'بچگانه'
+    }
+  };
 
-  const changeHandler = (data) => {
-    if(data == 'S' || data == 'M' || data == 'L' || data == 'XL' || data == '2XL')  return router.push(pathname + '?' + createQueryString('size' , data))
-    else if(data == 'red' || data == 'blue' || data == 'white' || data == 'black' || data == 'gray' || data == 'green' || data == 'brown' ||
-    data == 'yellow' || data == 'orange' || data == 'purple')  return router.push(pathname + '?' + createQueryString('color' , data))
-    else if(data == 'parsstyle' || data == 'calzino' || data == 'lebasina')  return router.push(pathname + '?' + createQueryString('seller' , data))
-    else if(data == 'men' || data == 'women' || data == 'child')  return router.push(pathname + '?' + createQueryString('sex' , data))
-    else if(data == 'allSize') return router.push(pathname + '?' + createQueryString('size' , ''))
-    else if(data == 'allColor') return router.push(pathname + '?' + createQueryString('color' , ''))
-    else if(data == 'allSeller') return router.push(pathname + '?' + createQueryString('seller' , ''))
-    else if(data == 'allSex') return router.push(pathname + '?' + createQueryString('sex' , ''))
-  }
-
-  let dynamicValueSize , dynamicValueColor , dynamicValueSeller , dynamicValueSex;
-
-  if(!searchParams.get('size'))  dynamicValueSize = 'همه';
-   else if(searchParams.get('size') == 'S' ) dynamicValueSize = 'S';
-   else if(searchParams.get('size') == 'M' ) dynamicValueSize = 'M';
-   else if(searchParams.get('size') == 'L') dynamicValueSize = 'L';
-   else if(searchParams.get('size') == 'XL') dynamicValueSize = 'XL';
-   else if(searchParams.get('size') == '2XL') dynamicValueSize = '2XL';
-
-  if(!searchParams.get('color')) dynamicValueColor = 'همه';
-   else if(searchParams.get('color') == 'red') dynamicValueColor = 'قرمز';
-   else if(searchParams.get('color') == 'blue') dynamicValueColor = 'آبی' ;
-   else if(searchParams.get('color') == 'white') dynamicValueColor = 'سفید' ;
-   else if(searchParams.get('color') == 'black') dynamicValueColor = 'مشکی' ;
-   else if(searchParams.get('color') == 'gray') dynamicValueColor = 'خاکستری';
-   else if(searchParams.get('color') == 'green') dynamicValueColor = 'سبز';
-   else if(searchParams.get('color') == 'brown' ) dynamicValueColor = 'قهوه‌‌ای';
-   else if(searchParams.get('color') == 'yellow') dynamicValueColor = 'زرد';
-   else if(searchParams.get('color') == 'orange') dynamicValueColor = 'نارنجی';
-   else if(searchParams.get('color') == 'purple') dynamicValueColor = 'بنقش';
-  
-
-  if(!searchParams.get('seller')) dynamicValueSeller = 'همه';
-   else if(searchParams.get('seller') == 'parsstyle' )dynamicValueSeller = 'پارس استایل';
-   else if(searchParams.get('seller') == 'calzino' ) dynamicValueSeller = 'کالزینو';
-   else if(searchParams.get('seller') == 'lebasina') dynamicValueSeller = 'لباسینا';
-
-   if(!searchParams.get('sex')) dynamicValueSex = 'همه';
-   else if(searchParams.get('sex') == 'men' ) dynamicValueSex = 'مردانه';
-   else if(searchParams.get('sex') == 'women' ) dynamicValueSex = 'زنانه';
-   else if(searchParams.get('sex') == 'child') dynamicValueSex = 'بچگانه';
+  const dynamicValueCategory = dynamicValues.category[category] || dynamicValues.category.default;
+  const dynamicValueColor = dynamicValues.color[color] || dynamicValues.color.default;
+  const dynamicValueSeller = dynamicValues.seller[seller] || dynamicValues.seller.default;
+  const dynamicValueSex = dynamicValues.sex[sex] || dynamicValues.sex.default;
 
   return (
-
-  <>
-
-    {
-      staticData.map(({title , option}) => (
-        <div key={title} style={{zIndex : '1035'}} className="flex flex-col justify-center">
-            <div className="text-sm mb-2 text-zinc-800">
-              {title}
-            </div>
-            <Select className="max-w-10" key={title} onValueChange={changeHandler}>
-                <SelectTrigger className="w-[100px] sm:w-[150px] ">
-                    <SelectValue placeholder={title == 'سایز' ? dynamicValueSize : title == 'رنگ' ? dynamicValueColor
-                     : title == 'فروشنده' ? dynamicValueSeller : title == 'جنسیت' ? dynamicValueSex : null } />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                        <SelectLabel>{title}</SelectLabel>
-                        {option.map(option => <SelectItem key={option} value={option.value}>{option.context}</SelectItem>)}
-                    </SelectGroup>
-                </SelectContent>
-            </Select>  
+    <>
+      {staticData.map(({ title, option }) => (
+        <div key={title} style={{ zIndex: '1035' }} className="flex flex-col justify-center">
+          <div className="text-sm mb-2 text-zinc-800">
+            {title}
+          </div>
+          <Select className="max-w-10" onValueChange={(e) => changeHandler(e ,title)}>
+            <SelectTrigger className="w-[100px] sm:w-[150px]">
+              <SelectValue
+                placeholder={
+                  title === 'دسته بندی' ? dynamicValueCategory :
+                  title === 'رنگ' ? dynamicValueColor :
+                  title === 'فروشنده' ? dynamicValueSeller :
+                  title === 'جنسیت' ? dynamicValueSex :
+                  null
+                }
+              />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>{title}</SelectLabel>
+                {option.map(opt => (
+                  <SelectItem key={opt.value} value={opt.value}>{opt.context}</SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
-      ))
-    }
-  </>
-
-  )
+      ))}
+    </>
+  );
 }

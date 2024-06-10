@@ -19,12 +19,6 @@ export async function POST(req) {
     }
     let user = await ParsStyleUser.findOne({Email : session?.user.email}) 
     let existProductInCart = user.Cart.find(item => item.id == data.id)
-    // if(!existProductInCart){
-    //     return NextResponse.json({'no' : 'no'} , {status : 200})
-    //     } 
-    //     else{
-    //         return NextResponse.json({'yes' : 'yes'} , {status : 200})
-    //     } 
     if(!existProductInCart){
       user.Cart.push({...data , ...additionalData}) 
       user.save();

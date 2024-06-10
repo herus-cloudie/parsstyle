@@ -202,7 +202,7 @@ const DetailsPage = ({data , session}) => {
             loading ? <div className='flex justify-center'><Loaders /></div>
             : commentStatus == 'reading'
             ? <div className='lg:mx-20 lg:mt-10 mb-10 sm:mt-5'>
-            <div className='border-b-4 border-black w-64 pb-2 mr-20 text-start text-3xl' style={{color : '#333'}}> امتیاز و نظرات کاربران</div>
+            <div className='border-b-4 border-black mr-5 w-64 pb-2 sm:mr-20 text-center sm:text-start text-3xl' style={{color : '#333'}}> امتیاز و نظرات کاربران</div>
             <div className='flex lg:flex-row flex-col sm:px-10 px-4 justify-between'>
                <div className='lg:w-1/4 w-full  h-52 shadow-md text-[#333] shadow-[#a2a2a2] rounded-lg ml-5 mt-8'>
                    <div className='text-center p-3 flex flex-col'>

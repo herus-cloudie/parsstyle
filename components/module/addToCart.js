@@ -51,8 +51,8 @@ const AddToCart = ({defaultData , data , session , additionalData}) => {
           setState(true)  
           toast({
             variant: "successful",
-            title: "محصول شما به سبد خرید افزوده شد",
-            action: <ToastAction altText="Try again"><Link href={'/cart'}>برو به سبد</Link></ToastAction>,
+            title: "محصول به سبد افزوده شد",
+            action: <ToastAction altText="Try again"><Link href={'/cart'}>سبد خرید</Link></ToastAction>,
           })
         } 
     }
